@@ -1,0 +1,337 @@
+// ===================================================================
+// BASE — Non-aggressive default styles for HTML elements
+// Wrapped in @layer so ANY existing project styles automatically win.
+// Does NOT change: box-sizing, margins, display, width, or layout.
+// Only enhances: typography, colors, subtle borders, and interactions.
+// ===================================================================
+
+@layer streamertail.base {
+
+  // --- HTML root ---
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    tab-size: 4;
+  }
+
+  // --- Body (font + color only, no margin/layout changes) ---
+  body {
+    font-family: var(--st-font-family);
+    font-size: var(--st-font-size-base);
+    line-height: var(--st-line-height-normal);
+    color: var(--st-text);
+    background-color: var(--st-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  // --- Headings (font enhancement only) ---
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--st-font-weight-bold);
+    line-height: var(--st-line-height-tight);
+    color: var(--st-text);
+  }
+
+  h1 { font-size: var(--st-font-size-5xl); }
+  h2 { font-size: var(--st-font-size-4xl); }
+  h3 { font-size: var(--st-font-size-3xl); }
+  h4 { font-size: var(--st-font-size-2xl); }
+  h5 { font-size: var(--st-font-size-xl); }
+  h6 { font-size: var(--st-font-size-lg); }
+
+  // --- Text blocks ---
+  blockquote {
+    padding-left: var(--st-space-4);
+    border-left: 4px solid var(--st-color-primary);
+    color: var(--st-text-secondary);
+    font-style: italic;
+  }
+
+  pre {
+    font-family: var(--st-font-family-mono);
+    font-size: var(--st-font-size-sm);
+    padding: var(--st-space-4);
+    background-color: var(--st-bg-surface);
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+    overflow-x: auto;
+  }
+
+  code {
+    font-family: var(--st-font-family-mono);
+    font-size: 0.875em;
+    padding: 0.125em 0.375em;
+    background-color: var(--st-bg-surface);
+    border-radius: var(--st-border-radius-sm);
+  }
+
+  pre code {
+    padding: 0;
+    background: none;
+    border-radius: 0;
+  }
+
+  kbd {
+    font-family: var(--st-font-family-mono);
+    font-size: 0.875em;
+    padding: 0.125em 0.375em;
+    background-color: var(--st-color-gray-100);
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius-sm);
+    box-shadow: 0 1px 0 var(--st-border-color-strong);
+  }
+
+  samp, var {
+    font-family: var(--st-font-family-mono);
+    font-size: 0.875em;
+  }
+
+  // --- Links ---
+  a {
+    color: var(--st-text-link);
+    text-underline-offset: 0.15em;
+    transition: color var(--st-transition-fast);
+
+    &:hover {
+      color: var(--st-text-link-hover);
+    }
+  }
+
+  // --- Inline elements ---
+  mark {
+    padding: 0.125em 0.25em;
+    background-color: #fef08a;
+    border-radius: var(--st-border-radius-sm);
+  }
+
+  abbr[title] {
+    text-decoration: underline dotted;
+    cursor: help;
+  }
+
+  // --- Horizontal rule ---
+  hr {
+    border: 0;
+    border-top: 1px solid var(--st-border-color);
+  }
+
+  // --- Lists ---
+  dt {
+    font-weight: var(--st-font-weight-semibold);
+  }
+
+  // --- Table (appearance only, no width/layout change) ---
+  table {
+    border-collapse: collapse;
+    font-size: var(--st-font-size-sm);
+  }
+
+  caption {
+    color: var(--st-text-muted);
+    text-align: left;
+    font-size: var(--st-font-size-sm);
+  }
+
+  th, td {
+    padding: var(--st-space-2) var(--st-space-3);
+    text-align: left;
+    border-bottom: 1px solid var(--st-border-color);
+  }
+
+  th {
+    font-weight: var(--st-font-weight-semibold);
+    background-color: var(--st-bg-surface);
+  }
+
+  // --- Forms (inherit font, themed colors, no layout changes) ---
+  label {
+    font-weight: var(--st-font-weight-medium);
+    font-size: var(--st-font-size-sm);
+    color: var(--st-text);
+  }
+
+  input,
+  textarea,
+  select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: var(--st-text);
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+    padding: var(--st-space-2) var(--st-space-3);
+
+    &:focus {
+      outline: none;
+      border-color: var(--st-color-primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &::placeholder {
+      color: var(--st-text-muted);
+    }
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    padding: 0;
+    border: revert;
+    border-radius: revert;
+    box-shadow: none;
+    accent-color: var(--st-color-primary);
+    cursor: pointer;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  input[type="color"] {
+    padding: var(--st-space-1);
+    cursor: pointer;
+  }
+
+  input[type="range"] {
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    accent-color: var(--st-color-primary);
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  input[type="file"] {
+    border-style: dashed;
+    cursor: pointer;
+    font-size: var(--st-font-size-sm);
+  }
+
+  select {
+    cursor: pointer;
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  fieldset {
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+    padding: var(--st-space-4);
+  }
+
+  legend {
+    font-weight: var(--st-font-weight-semibold);
+    font-size: var(--st-font-size-sm);
+  }
+
+  // --- Buttons (inherit font, subtle style, no layout change) ---
+  button,
+  input[type="button"],
+  input[type="submit"],
+  input[type="reset"] {
+    font-family: inherit;
+    font-size: var(--st-font-size-sm);
+    font-weight: var(--st-font-weight-medium);
+    line-height: var(--st-line-height-normal);
+    padding: var(--st-space-2) var(--st-space-4);
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+    background-color: var(--st-bg);
+    color: var(--st-text);
+    cursor: pointer;
+    transition: background-color var(--st-transition-fast), border-color var(--st-transition-fast);
+
+    &:hover {
+      background-color: var(--st-bg-surface);
+      border-color: var(--st-border-color-strong);
+    }
+
+    &:active {
+      background-color: var(--st-color-gray-100);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // --- Progress & Meter ---
+  progress {
+    accent-color: var(--st-color-primary);
+  }
+
+  // --- Interactive elements ---
+  details {
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+    padding: var(--st-space-3) var(--st-space-4);
+
+    &[open] summary {
+      margin-bottom: var(--st-space-3);
+    }
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: var(--st-font-weight-medium);
+
+    &:hover {
+      color: var(--st-color-primary);
+    }
+  }
+
+  dialog {
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius-md);
+    padding: var(--st-space-4);
+    box-shadow: var(--st-shadow-lg);
+
+    &::backdrop {
+      background-color: var(--st-bg-overlay);
+    }
+  }
+
+  // --- Media (no display/layout changes — keeps inline default) ---
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  iframe {
+    border: 1px solid var(--st-border-color);
+    border-radius: var(--st-border-radius);
+  }
+
+  // --- Figure ---
+  figcaption {
+    font-size: var(--st-font-size-sm);
+    color: var(--st-text-muted);
+  }
+
+  // --- Ruby ---
+  ruby {
+    ruby-align: center;
+  }
+
+  rt {
+    font-size: 0.625em;
+    color: var(--st-text-muted);
+  }
+
+  // --- Selection ---
+  ::selection {
+    background-color: rgba(37, 99, 235, 0.2);
+    color: var(--st-text);
+  }
+
+} // end @layer streamertail.base

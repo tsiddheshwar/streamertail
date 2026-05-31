@@ -1,0 +1,40 @@
+// ===================================================================
+// HOVER COLORS — Background, text, and border hover state utilities
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Hover background colors ---
+@include dual-state('hover-bg-primary', hover) { background-color: var(--st-color-primary); }
+@include dual-state('hover-bg-secondary', hover) { background-color: var(--st-color-secondary); }
+@include dual-state('hover-bg-accent', hover) { background-color: var(--st-color-accent); }
+@include dual-state('hover-bg-success', hover) { background-color: var(--st-color-success); }
+@include dual-state('hover-bg-danger', hover) { background-color: var(--st-color-danger); }
+@include dual-state('hover-bg-warning', hover) { background-color: var(--st-color-warning); }
+@include dual-state('hover-bg-surface', hover) { background-color: var(--st-bg-surface); }
+@include dual-state('hover-bg-elevated', hover) { background-color: var(--st-bg-elevated); }
+@include dual-state('hover-bg-transparent', hover) { background-color: transparent; }
+@include dual-state('hover-bg-white', hover) { background-color: #ffffff; }
+@include dual-state('hover-bg-black', hover) { background-color: #000000; }
+
+// --- Hover text colors ---
+@include dual-state('hover-text-primary', hover) { color: var(--st-color-primary); }
+@include dual-state('hover-text-secondary', hover) { color: var(--st-color-secondary); }
+@include dual-state('hover-text-accent', hover) { color: var(--st-color-accent); }
+@include dual-state('hover-text-success', hover) { color: var(--st-color-success); }
+@include dual-state('hover-text-danger', hover) { color: var(--st-color-danger); }
+@include dual-state('hover-text-warning', hover) { color: var(--st-color-warning); }
+@include dual-state('hover-text-muted', hover) { color: var(--st-text-muted); }
+@include dual-state('hover-text-white', hover) { color: #ffffff; }
+@include dual-state('hover-text-black', hover) { color: #000000; }
+
+// --- Hover border colors ---
+@include dual-state('hover-border-primary', hover) { border-color: var(--st-color-primary); }
+@include dual-state('hover-border-secondary', hover) { border-color: var(--st-color-secondary); }
+@include dual-state('hover-border-danger', hover) { border-color: var(--st-color-danger); }
+@include dual-state('hover-border-success', hover) { border-color: var(--st-color-success); }
+@include dual-state('hover-border-transparent', hover) { border-color: transparent; }
+
+// --- Hover opacity ---
+@include dual-state('hover-opacity-50', hover) { opacity: 0.5; }
+@include dual-state('hover-opacity-75', hover) { opacity: 0.75; }
+@include dual-state('hover-opacity-100', hover) { opacity: 1; }

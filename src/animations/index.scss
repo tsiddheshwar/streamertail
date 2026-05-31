@@ -1,0 +1,62 @@
+// ===================================================================
+// Streamertail Animations — Transitions & keyframe utilities
+// ===================================================================
+@use 'mixins' as *;
+@use 'easter-eggs';
+
+// === TRANSITION UTILITIES ===
+@include dual('transition-none') { transition: none; }
+@include dual('transition-all') { transition: all var(--st-transition); }
+@include dual('transition-fast') { transition: all var(--st-transition-fast); }
+@include dual('transition-slow') { transition: all var(--st-transition-slow); }
+@include dual('transition-colors') { transition: color var(--st-transition), background-color var(--st-transition), border-color var(--st-transition); }
+@include dual('transition-opacity') { transition: opacity var(--st-transition); }
+@include dual('transition-shadow') { transition: box-shadow var(--st-transition); }
+@include dual('transition-transform') { transition: transform var(--st-transition); }
+
+// === KEYFRAME ANIMATIONS ===
+@keyframes st-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes st-fade-out { from { opacity: 1; } to { opacity: 0; } }
+@keyframes st-slide-up { from { transform: translateY(0.5rem); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes st-slide-down { from { transform: translateY(-0.5rem); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes st-scale-in { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+@keyframes st-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes st-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes st-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-25%); } }
+
+// === ANIMATION CLASSES ===
+$animations: (
+  fade-in: st-fade-in var(--st-transition-slow) ease both,
+  fade-out: st-fade-out var(--st-transition-slow) ease both,
+  slide-up: st-slide-up var(--st-transition-slow) ease both,
+  slide-down: st-slide-down var(--st-transition-slow) ease both,
+  scale-in: st-scale-in var(--st-transition-slow) ease both,
+  spin: st-spin 1s linear infinite,
+  pulse: st-pulse 2s ease-in-out infinite,
+  bounce: st-bounce 1s ease infinite,
+);
+
+@each $name, $val in $animations {
+  @include dual('animate-#{$name}') { animation: #{$val}; }
+}
+
+// === HOVER TRANSFORMS ===
+@include dual-state('hover-lift', hover) { transform: translateY(-2px); }
+@include dual-state('hover-grow', hover) { transform: scale(1.05); }
+@include dual-state('hover-shrink', hover) { transform: scale(0.95); }
+
+// === REDUCED MOTION ===
+@media (prefers-reduced-motion: reduce) {
+  @each $name, $val in $animations {
+    .st-animate-#{$name}, .animate-#{$name} { animation: none; }
+  }
+  .st-transition-all, .transition-all,
+  .st-transition-fast, .transition-fast,
+  .st-transition-slow, .transition-slow,
+  .st-transition-colors, .transition-colors,
+  .st-transition-opacity, .transition-opacity,
+  .st-transition-shadow, .transition-shadow,
+  .st-transition-transform, .transition-transform {
+    transition: none;
+  }
+}

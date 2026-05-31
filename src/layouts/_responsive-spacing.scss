@@ -1,0 +1,48 @@
+// ===================================================================
+// RESPONSIVE SPACING — Padding & Margin at breakpoints
+// Generates: .st-{bp}-p-{size}, .st-{bp}-m-{size}, etc.
+// ===================================================================
+@use 'mixins' as *;
+
+$spacing-scale: (
+  0: 0,
+  1: var(--st-space-1),
+  2: var(--st-space-2),
+  3: var(--st-space-3),
+  4: var(--st-space-4),
+  5: var(--st-space-5),
+  6: var(--st-space-6),
+  8: var(--st-space-8),
+  10: var(--st-space-10),
+  12: var(--st-space-12),
+  16: var(--st-space-16),
+  20: var(--st-space-20),
+);
+
+@each $bp-name, $bp-value in $breakpoints {
+  @include breakpoint($bp-value) {
+    @each $size, $val in $spacing-scale {
+      // Padding
+      .st-#{$bp-name}-p-#{$size}, .#{$bp-name}-p-#{$size} { padding: #{$val}; }
+      .st-#{$bp-name}-px-#{$size}, .#{$bp-name}-px-#{$size} { padding-left: #{$val}; padding-right: #{$val}; }
+      .st-#{$bp-name}-py-#{$size}, .#{$bp-name}-py-#{$size} { padding-top: #{$val}; padding-bottom: #{$val}; }
+      .st-#{$bp-name}-pt-#{$size}, .#{$bp-name}-pt-#{$size} { padding-top: #{$val}; }
+      .st-#{$bp-name}-pb-#{$size}, .#{$bp-name}-pb-#{$size} { padding-bottom: #{$val}; }
+      .st-#{$bp-name}-pl-#{$size}, .#{$bp-name}-pl-#{$size} { padding-left: #{$val}; }
+      .st-#{$bp-name}-pr-#{$size}, .#{$bp-name}-pr-#{$size} { padding-right: #{$val}; }
+
+      // Margin
+      .st-#{$bp-name}-m-#{$size}, .#{$bp-name}-m-#{$size} { margin: #{$val}; }
+      .st-#{$bp-name}-mx-#{$size}, .#{$bp-name}-mx-#{$size} { margin-left: #{$val}; margin-right: #{$val}; }
+      .st-#{$bp-name}-my-#{$size}, .#{$bp-name}-my-#{$size} { margin-top: #{$val}; margin-bottom: #{$val}; }
+      .st-#{$bp-name}-mt-#{$size}, .#{$bp-name}-mt-#{$size} { margin-top: #{$val}; }
+      .st-#{$bp-name}-mb-#{$size}, .#{$bp-name}-mb-#{$size} { margin-bottom: #{$val}; }
+      .st-#{$bp-name}-ml-#{$size}, .#{$bp-name}-ml-#{$size} { margin-left: #{$val}; }
+      .st-#{$bp-name}-mr-#{$size}, .#{$bp-name}-mr-#{$size} { margin-right: #{$val}; }
+    }
+
+    // Responsive margin auto
+    .st-#{$bp-name}-mx-auto, .#{$bp-name}-mx-auto { margin-left: auto; margin-right: auto; }
+    .st-#{$bp-name}-m-auto, .#{$bp-name}-m-auto { margin: auto; }
+  }
+}

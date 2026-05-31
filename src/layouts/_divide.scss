@@ -1,0 +1,50 @@
+// ===================================================================
+// DIVIDE — Borders between child elements (flex/grid children)
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Divide Y (horizontal lines between stacked items) ---
+@include dual('divide-y') {
+  > * + * {
+    border-top: 1px solid var(--st-border-color);
+  }
+}
+
+@include dual('divide-y-2') {
+  > * + * {
+    border-top: 2px solid var(--st-border-color);
+  }
+}
+
+// --- Divide X (vertical lines between inline items) ---
+@include dual('divide-x') {
+  > * + * {
+    border-left: 1px solid var(--st-border-color);
+  }
+}
+
+@include dual('divide-x-2') {
+  > * + * {
+    border-left: 2px solid var(--st-border-color);
+  }
+}
+
+// --- Divide colors ---
+@include dual('divide-primary') {
+  > * + * {
+    border-color: var(--st-color-primary);
+  }
+}
+
+@include dual('divide-gray') {
+  > * + * {
+    border-color: var(--st-color-gray-200);
+  }
+}
+
+// --- Divide none (remove) ---
+@include dual('divide-none') {
+  > * + * {
+    border: 0;
+  }
+}

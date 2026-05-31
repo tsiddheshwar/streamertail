@@ -1,0 +1,306 @@
+// ===================================================================
+// SEMANTIC LAYOUTS — Composable layout primitives
+// Based on "Every Layout" patterns: Stack, Cluster, Sidebar, Switcher, etc.
+// ===================================================================
+@use 'mixins' as *;
+
+// ---------------------------------------------------------------------------
+// STACK — Vertical rhythm: evenly spaced children in a column
+// Usage: <div class="st-stack">...</div>
+// ---------------------------------------------------------------------------
+@include dual('stack') {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-4);
+}
+
+@include dual('stack-sm') {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-2);
+}
+
+@include dual('stack-lg') {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-8);
+}
+
+@include dual('stack-xl') {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-12);
+}
+
+// ---------------------------------------------------------------------------
+// CLUSTER — Horizontal grouping that wraps (tags, pills, button groups)
+// Usage: <div class="st-cluster">...</div>
+// ---------------------------------------------------------------------------
+@include dual('cluster') {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-3);
+  align-items: center;
+}
+
+@include dual('cluster-sm') {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-1);
+  align-items: center;
+}
+
+@include dual('cluster-lg') {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-6);
+  align-items: center;
+}
+
+// ---------------------------------------------------------------------------
+// CENTER — Horizontally centered content with max-width
+// Usage: <div class="st-center">...</div>
+// ---------------------------------------------------------------------------
+@include dual('center') {
+  box-sizing: content-box;
+  max-width: var(--st-center-width, 65ch);
+  margin-inline: auto;
+  padding-inline: var(--st-space-4);
+}
+
+@include dual('center-narrow') {
+  box-sizing: content-box;
+  max-width: 45ch;
+  margin-inline: auto;
+  padding-inline: var(--st-space-4);
+}
+
+@include dual('center-wide') {
+  box-sizing: content-box;
+  max-width: 90ch;
+  margin-inline: auto;
+  padding-inline: var(--st-space-4);
+}
+
+// ---------------------------------------------------------------------------
+// COVER — Full-viewport section with centered principal element
+// Usage: <div class="st-cover"><div class="st-cover-center">...</div></div>
+// ---------------------------------------------------------------------------
+@include dual('cover') {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: var(--st-space-4);
+}
+
+@include dual('cover-center') {
+  margin-block: auto;
+}
+
+// ---------------------------------------------------------------------------
+// SIDEBAR — Two-panel layout where one side has intrinsic width
+// Usage: <div class="st-with-sidebar"><aside>...</aside><main>...</main></div>
+// ---------------------------------------------------------------------------
+@include dual('with-sidebar') {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-4);
+}
+
+.st-with-sidebar > :first-child,
+.with-sidebar > :first-child {
+  flex-basis: var(--st-sidebar-width, 20rem);
+  flex-grow: 1;
+}
+
+.st-with-sidebar > :last-child,
+.with-sidebar > :last-child {
+  flex-basis: 0;
+  flex-grow: 999;
+  min-width: 50%;
+}
+
+// ---------------------------------------------------------------------------
+// SWITCHER — Row that flips to column when space runs out
+// Usage: <div class="st-switcher">...</div>
+// ---------------------------------------------------------------------------
+@include dual('switcher') {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--st-space-4);
+}
+
+.st-switcher > *,
+.switcher > * {
+  flex-grow: 1;
+  flex-basis: calc((var(--st-switcher-threshold, 30rem) - 100%) * 999);
+}
+
+// ---------------------------------------------------------------------------
+// REEL — Horizontal scrolling strip (carousel, tab bar, image gallery)
+// Usage: <div class="st-reel">...</div>
+// ---------------------------------------------------------------------------
+@include dual('reel') {
+  display: flex;
+  gap: var(--st-space-4);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.st-reel > *,
+.reel > * {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+}
+
+// ---------------------------------------------------------------------------
+// IMPOSTER — Centered overlay (modals, dialogs, popups)
+// Usage: <div class="st-imposter">...</div>
+// ---------------------------------------------------------------------------
+@include dual('imposter') {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@include dual('imposter-fixed') {
+  position: fixed;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--st-z-modal);
+}
+
+// ---------------------------------------------------------------------------
+// FRAME — Aspect-ratio container for media (images, video, maps)
+// Usage: <div class="st-frame"><img src="..." /></div>
+// ---------------------------------------------------------------------------
+@include dual('frame') {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-frame > img,
+.st-frame > video,
+.frame > img,
+.frame > video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+@include dual('frame-square') {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.st-frame-square > img,
+.st-frame-square > video,
+.frame-square > img,
+.frame-square > video {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+// ---------------------------------------------------------------------------
+// ICON — Inline icon sizing that inherits text color
+// Usage: <svg class="st-icon">...</svg>
+// ---------------------------------------------------------------------------
+@include dual('icon') {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+@include dual('icon-sm') {
+  width: 0.875em;
+  height: 0.875em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+@include dual('icon-lg') {
+  width: 1.25em;
+  height: 1.25em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+@include dual('icon-xl') {
+  width: 1.5em;
+  height: 1.5em;
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentColor;
+}
+
+// ---------------------------------------------------------------------------
+// HOLY GRAIL — Classic header + sidebar + main + sidebar + footer
+// Usage: <div class="st-holy-grail">
+//          <header>...</header>
+//          <nav>...</nav>
+//          <main>...</main>
+//          <aside>...</aside>
+//          <footer>...</footer>
+//        </div>
+// ---------------------------------------------------------------------------
+@include dual('holy-grail') {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: minmax(12rem, 1fr) minmax(0, 4fr) minmax(12rem, 1fr);
+}
+
+.st-holy-grail > header,
+.st-holy-grail > footer,
+.holy-grail > header,
+.holy-grail > footer {
+  grid-column: 1 / -1;
+}
+
+// ---------------------------------------------------------------------------
+// PANCAKE — Simple stacking layout for app shell (header/main/footer)
+// Usage: <div class="st-pancake"><header/><main/><footer/></div>
+// ---------------------------------------------------------------------------
+@include dual('pancake') {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+// ---------------------------------------------------------------------------
+// AUTO-GRID — Responsive grid that auto-fills columns
+// Usage: <div class="st-auto-grid">...</div>
+// ---------------------------------------------------------------------------
+@include dual('auto-grid') {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--st-auto-grid-min, 16rem), 1fr));
+  gap: var(--st-space-4);
+}
+
+@include dual('auto-grid-sm') {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: var(--st-space-3);
+}
+
+@include dual('auto-grid-lg') {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: var(--st-space-6);
+}

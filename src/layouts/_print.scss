@@ -1,0 +1,34 @@
+// ===================================================================
+// PRINT — Print media query utilities
+// ===================================================================
+@use 'mixins' as *;
+
+@media print {
+  .st-print-hidden,
+  .print-hidden {
+    display: none !important;
+  }
+
+  .st-print-only,
+  .print-only {
+    display: block !important;
+  }
+
+  .st-print-break-before,
+  .print-break-before {
+    page-break-before: always;
+  }
+
+  .st-print-break-after,
+  .print-break-after {
+    page-break-after: always;
+  }
+
+  .st-print-break-inside-avoid,
+  .print-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+}
+
+// Hidden on screen, visible only when printing
+@include dual('print-only') { display: none; }

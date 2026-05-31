@@ -1,0 +1,133 @@
+// ===================================================================
+// FORMS — Input, select, textarea, labels, checkbox, radio
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Base input ---
+@include dual('input') {
+  display: block;
+  width: 100%;
+  padding: var(--st-space-2) var(--st-space-3);
+  font-family: var(--st-font-family);
+  font-size: var(--st-font-size-base);
+  line-height: var(--st-line-height-normal);
+  color: var(--st-text);
+  background-color: var(--st-bg);
+  border: 1px solid var(--st-border-color);
+  border-radius: var(--st-border-radius);
+  transition: border-color var(--st-transition-fast), box-shadow var(--st-transition-fast);
+  appearance: none;
+
+  &:focus {
+    outline: none;
+    border-color: var(--st-color-primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: var(--st-bg-surface);
+  }
+
+  &::placeholder {
+    color: var(--st-text-muted);
+  }
+}
+
+// --- Input sizes ---
+@include dual('input-sm') {
+  padding: var(--st-space-1) var(--st-space-2);
+  font-size: var(--st-font-size-sm);
+}
+@include dual('input-lg') {
+  padding: var(--st-space-3) var(--st-space-4);
+  font-size: var(--st-font-size-lg);
+}
+
+// --- Validation states ---
+@include dual('input-success') {
+  border-color: var(--st-color-success);
+  &:focus { box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15); }
+}
+@include dual('input-error') {
+  border-color: var(--st-color-danger);
+  &:focus { box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.15); }
+}
+
+// --- Textarea ---
+textarea.st-input,
+textarea.input {
+  min-height: 5rem;
+  resize: vertical;
+}
+
+// --- Select ---
+select.st-input,
+select.input {
+  padding-right: var(--st-space-8);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%236b7280' d='M4.427 6.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 6H4.604a.25.25 0 00-.177.427z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right var(--st-space-3) center;
+  background-size: 1rem;
+}
+
+// --- Label ---
+@include dual('label') {
+  display: block;
+  margin-bottom: var(--st-space-1);
+  font-size: var(--st-font-size-sm);
+  font-weight: var(--st-font-weight-medium);
+  color: var(--st-text);
+}
+.st-label-required::after,
+.label-required::after {
+  content: ' *';
+  color: var(--st-color-danger);
+}
+
+// --- Form group ---
+@include dual('form-group') {
+  display: flex;
+  flex-direction: column;
+  gap: var(--st-space-1);
+  margin-bottom: var(--st-space-4);
+}
+@include dual('form-helper') {
+  margin-top: var(--st-space-1);
+  font-size: var(--st-font-size-xs);
+  color: var(--st-text-muted);
+}
+@include dual('form-error') {
+  margin-top: var(--st-space-1);
+  font-size: var(--st-font-size-xs);
+  color: var(--st-color-danger);
+}
+
+// --- Checkbox & Radio ---
+.st-checkbox, .checkbox,
+.st-radio, .radio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--st-space-2);
+  cursor: pointer;
+  font-size: var(--st-font-size-base);
+  color: var(--st-text);
+}
+.st-checkbox input[type="checkbox"],
+.checkbox input[type="checkbox"],
+.st-radio input[type="radio"],
+.radio input[type="radio"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  accent-color: var(--st-color-primary);
+}
+
+// --- Form inline ---
+@include dual('form-inline') {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--st-space-3);
+}

@@ -1,0 +1,96 @@
+/* ===================================================================
+   THEME SYSTEM
+   Supports three switching mechanisms:
+   1. Auto: prefers-color-scheme media query
+   2. Class: .theme-dark / .theme-light on any ancestor
+   3. Attribute: data-theme="dark" / data-theme="light" on any element
+   
+   Priority: explicit class/attribute > OS preference
+   =================================================================== */
+
+/* === Dark theme via OS preference (lowest priority) === */
+@media (prefers-color-scheme: dark) {
+  :root:not(.theme-light):not([data-theme="light"]) {
+    --st-bg: #0f172a;
+    --st-bg-surface: #1e293b;
+    --st-bg-elevated: #334155;
+    --st-bg-overlay: rgba(0, 0, 0, 0.7);
+
+    --st-text: #f1f5f9;
+    --st-text-secondary: #cbd5e1;
+    --st-text-muted: #64748b;
+    --st-text-inverse: #0f172a;
+
+    --st-border-color: #334155;
+    --st-border-color-strong: #475569;
+
+    --st-color-success-light: #052e16;
+    --st-color-warning-light: #431407;
+    --st-color-caution-light: #422006;
+    --st-color-danger-light: #450a0a;
+    --st-color-info-light: #082f49;
+    --st-color-neutral-light: #1f2937;
+
+    --st-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --st-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+    --st-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --st-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+    --st-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    --st-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* === Dark theme via class (higher priority) === */
+.theme-dark,
+[data-theme="dark"] {
+  --st-bg: #0f172a;
+  --st-bg-surface: #1e293b;
+  --st-bg-elevated: #334155;
+  --st-bg-overlay: rgba(0, 0, 0, 0.7);
+
+  --st-text: #f1f5f9;
+  --st-text-secondary: #cbd5e1;
+  --st-text-muted: #64748b;
+  --st-text-inverse: #0f172a;
+
+  --st-border-color: #334155;
+  --st-border-color-strong: #475569;
+
+  --st-color-success-light: #052e16;
+  --st-color-warning-light: #431407;
+  --st-color-caution-light: #422006;
+  --st-color-danger-light: #450a0a;
+  --st-color-info-light: #082f49;
+  --st-color-neutral-light: #1f2937;
+
+  --st-shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --st-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --st-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+  --st-shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --st-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+  --st-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* === Light theme explicit override === */
+.theme-light,
+[data-theme="light"] {
+  --st-bg: #ffffff;
+  --st-bg-surface: #f9fafb;
+  --st-bg-elevated: #ffffff;
+  --st-bg-overlay: rgba(0, 0, 0, 0.5);
+
+  --st-text: #111827;
+  --st-text-secondary: #4b5563;
+  --st-text-muted: #9ca3af;
+  --st-text-inverse: #ffffff;
+
+  --st-border-color: #e5e7eb;
+  --st-border-color-strong: #d1d5db;
+
+  --st-color-success-light: #dcfce7;
+  --st-color-warning-light: #fff7ed;
+  --st-color-caution-light: #fefce8;
+  --st-color-danger-light: #fef2f2;
+  --st-color-info-light: #e0f2fe;
+  --st-color-neutral-light: #f3f4f6;
+}

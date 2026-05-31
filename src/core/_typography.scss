@@ -1,0 +1,111 @@
+// ===================================================================
+// TYPOGRAPHY — Font sizes, weights, headings, alignment, decoration
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Headings ---
+@for $i from 1 through 6 {
+  @include dual('heading-#{$i}') {
+    font-weight: var(--st-font-weight-bold);
+    line-height: var(--st-line-height-tight);
+    margin: 0;
+  }
+}
+
+.st-heading-1, .heading-1 { font-size: var(--st-font-size-5xl); }
+.st-heading-2, .heading-2 { font-size: var(--st-font-size-4xl); }
+.st-heading-3, .heading-3 { font-size: var(--st-font-size-3xl); }
+.st-heading-4, .heading-4 { font-size: var(--st-font-size-2xl); }
+.st-heading-5, .heading-5 { font-size: var(--st-font-size-xl); }
+.st-heading-6, .heading-6 { font-size: var(--st-font-size-lg); }
+
+// --- Font sizes ---
+$font-sizes: (xs, sm, base, lg, xl, 2xl, 3xl, 4xl, 5xl);
+
+@each $size in $font-sizes {
+  @include dual('text-#{$size}') {
+    font-size: var(--st-font-size-#{$size});
+  }
+}
+
+// Alias: .text-body = base size
+@include dual('text-body') {
+  font-size: var(--st-font-size-base);
+}
+
+// --- Font weights ---
+$weights: (light, normal, medium, semibold, bold);
+
+@each $w in $weights {
+  @include dual('font-#{$w}') {
+    font-weight: var(--st-font-weight-#{$w});
+  }
+}
+
+// --- Font family ---
+@include dual('font-sans') {
+  font-family: var(--st-font-family);
+}
+@include dual('font-mono') {
+  font-family: var(--st-font-family-mono);
+}
+
+// --- Text alignment ---
+$alignments: (left, center, right, justify);
+
+@each $align in $alignments {
+  @include dual('text-#{$align}') {
+    text-align: #{$align};
+  }
+}
+
+// --- Text transform ---
+@include dual('text-uppercase') { text-transform: uppercase; }
+@include dual('text-lowercase') { text-transform: lowercase; }
+@include dual('text-capitalize') { text-transform: capitalize; }
+@include dual('text-normal-case') { text-transform: none; }
+
+// --- Text decoration ---
+@include dual('text-underline') { text-decoration: underline; }
+@include dual('text-line-through') { text-decoration: line-through; }
+@include dual('text-no-underline') { text-decoration: none; }
+
+// --- Line height ---
+@include dual('leading-tight') { line-height: var(--st-line-height-tight); }
+@include dual('leading-normal') { line-height: var(--st-line-height-normal); }
+@include dual('leading-relaxed') { line-height: var(--st-line-height-relaxed); }
+
+// --- Utilities ---
+@include dual('text-truncate') {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@include dual('text-wrap') { white-space: normal; }
+@include dual('text-nowrap') { white-space: nowrap; }
+@include dual('text-break') { word-break: break-word; overflow-wrap: break-word; }
+
+// --- Letter spacing ---
+@include dual('tracking-tighter') { letter-spacing: -0.05em; }
+@include dual('tracking-tight') { letter-spacing: -0.025em; }
+@include dual('tracking-normal') { letter-spacing: 0; }
+@include dual('tracking-wide') { letter-spacing: 0.025em; }
+@include dual('tracking-wider') { letter-spacing: 0.05em; }
+@include dual('tracking-widest') { letter-spacing: 0.1em; }
+
+// --- Responsive font sizes (at breakpoints) ---
+@each $bp-name, $bp-value in $breakpoints {
+  @include breakpoint($bp-value) {
+    @each $size in $font-sizes {
+      .st-#{$bp-name}-text-#{$size}, .#{$bp-name}-text-#{$size} {
+        font-size: var(--st-font-size-#{$size});
+      }
+    }
+
+    // Responsive alignment
+    .st-#{$bp-name}-text-left, .#{$bp-name}-text-left { text-align: left; }
+    .st-#{$bp-name}-text-center, .#{$bp-name}-text-center { text-align: center; }
+    .st-#{$bp-name}-text-right, .#{$bp-name}-text-right { text-align: right; }
+  }
+}

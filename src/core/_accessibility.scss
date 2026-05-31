@@ -1,0 +1,100 @@
+// ===================================================================
+// ACCESSIBILITY — Screen reader, focus ring, reduced motion helpers
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Screen Reader Only (visually hidden, accessible to AT) ---
+@include dual('sr-only') {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@include dual('not-sr-only') {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+// --- Focus Ring (accessible focus indicator) ---
+@include dual('focus-ring') {
+  &:focus {
+    outline: 2px solid var(--st-color-primary);
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--st-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+@include dual('focus-ring-danger') {
+  &:focus-visible {
+    outline: 2px solid var(--st-color-danger);
+    outline-offset: 2px;
+  }
+}
+
+@include dual('focus-ring-inset') {
+  &:focus-visible {
+    outline: 2px solid var(--st-color-primary);
+    outline-offset: -2px;
+  }
+}
+
+// --- Focus within (highlight parent when child is focused) ---
+@include dual('focus-within-ring') {
+  &:focus-within {
+    outline: 2px solid var(--st-color-primary);
+    outline-offset: 2px;
+  }
+}
+
+// --- Skip link (for keyboard navigation) ---
+@include dual('skip-link') {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--st-space-2) var(--st-space-4);
+  background-color: var(--st-color-primary);
+  color: #fff;
+  border-radius: var(--st-border-radius);
+  z-index: 9999;
+  text-decoration: none;
+  font-weight: var(--st-font-weight-medium);
+
+  &:focus {
+    top: var(--st-space-2);
+  }
+}
+
+// --- Reduced motion preference respector ---
+@include dual('motion-safe') {
+  @media (prefers-reduced-motion: reduce) {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@include dual('motion-reduce') {
+  @media (prefers-reduced-motion: no-preference) {
+    display: none;
+  }
+}

@@ -1,0 +1,22 @@
+// ===================================================================
+// SHADOWS — Elevation & box-shadow utilities
+// ===================================================================
+@use 'mixins' as *;
+
+// Elevation levels
+@include dual('shadow-none') { box-shadow: none; }
+@include dual('shadow-xs') { box-shadow: var(--st-shadow-xs); }
+@include dual('shadow-sm') { box-shadow: var(--st-shadow-sm); }
+@include dual('shadow') { box-shadow: var(--st-shadow); }
+@include dual('shadow-md') { box-shadow: var(--st-shadow-md); }
+@include dual('shadow-lg') { box-shadow: var(--st-shadow-lg); }
+@include dual('shadow-xl') { box-shadow: var(--st-shadow-xl); }
+
+// Inner shadow
+@include dual('shadow-inner') { box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); }
+
+// Colored shadows (soft glow)
+@include dual('shadow-primary') { box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3); }
+@include dual('shadow-success') { box-shadow: 0 4px 14px rgba(22, 163, 74, 0.3); }
+@include dual('shadow-danger') { box-shadow: 0 4px 14px rgba(220, 38, 38, 0.3); }
+@include dual('shadow-warning') { box-shadow: 0 4px 14px rgba(234, 88, 12, 0.3); }

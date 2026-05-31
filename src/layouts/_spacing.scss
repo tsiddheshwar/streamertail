@@ -1,0 +1,80 @@
+// ===================================================================
+// SPACING — Padding & Margin utility classes (generated via loops)
+// ===================================================================
+@use 'mixins' as *;
+
+// Spacing scale map
+$space-values: (
+  0: 0,
+  1: var(--st-space-1),
+  2: var(--st-space-2),
+  3: var(--st-space-3),
+  4: var(--st-space-4),
+  5: var(--st-space-5),
+  6: var(--st-space-6),
+  8: var(--st-space-8),
+  10: var(--st-space-10),
+  12: var(--st-space-12),
+  16: var(--st-space-16),
+  20: var(--st-space-20),
+);
+
+// --- PADDING ---
+// All sides
+@each $key, $val in $space-values {
+  @include dual('p-#{$key}') { padding: #{$val}; }
+}
+
+// Horizontal (left + right)
+@each $key, $val in $space-values {
+  @include dual('px-#{$key}') { padding-left: #{$val}; padding-right: #{$val}; }
+}
+
+// Vertical (top + bottom)
+@each $key, $val in $space-values {
+  @include dual('py-#{$key}') { padding-top: #{$val}; padding-bottom: #{$val}; }
+}
+
+// Individual sides
+$sides: (t: top, r: right, b: bottom, l: left);
+
+@each $abbr, $side in $sides {
+  @each $key, $val in $space-values {
+    @include dual('p#{$abbr}-#{$key}') { padding-#{$side}: #{$val}; }
+  }
+}
+
+// --- MARGIN ---
+// All sides
+@each $key, $val in $space-values {
+  @include dual('m-#{$key}') { margin: #{$val}; }
+}
+@include dual('m-auto') { margin: auto; }
+
+// Horizontal (left + right)
+@each $key, $val in $space-values {
+  @include dual('mx-#{$key}') { margin-left: #{$val}; margin-right: #{$val}; }
+}
+@include dual('mx-auto') { margin-left: auto; margin-right: auto; }
+
+// Vertical (top + bottom)
+@each $key, $val in $space-values {
+  @include dual('my-#{$key}') { margin-top: #{$val}; margin-bottom: #{$val}; }
+}
+
+// Individual sides
+@each $abbr, $side in $sides {
+  @each $key, $val in $space-values {
+    @include dual('m#{$abbr}-#{$key}') { margin-#{$side}: #{$val}; }
+  }
+}
+
+// Negative margins (useful for bleeding out of containers)
+@each $key, $val in $space-values {
+  @if $key != 0 {
+    @include dual('-mt-#{$key}') { margin-top: calc(#{$val} * -1); }
+    @include dual('-mb-#{$key}') { margin-bottom: calc(#{$val} * -1); }
+    @include dual('-ml-#{$key}') { margin-left: calc(#{$val} * -1); }
+    @include dual('-mr-#{$key}') { margin-right: calc(#{$val} * -1); }
+  }
+}

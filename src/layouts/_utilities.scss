@@ -1,0 +1,66 @@
+// ===================================================================
+// UTILITIES — Opacity, z-index, cursor, pointer-events, misc
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Opacity ---
+@include dual('opacity-0') { opacity: 0; }
+@include dual('opacity-5') { opacity: 0.05; }
+@include dual('opacity-10') { opacity: 0.1; }
+@include dual('opacity-20') { opacity: 0.2; }
+@include dual('opacity-25') { opacity: 0.25; }
+@include dual('opacity-30') { opacity: 0.3; }
+@include dual('opacity-40') { opacity: 0.4; }
+@include dual('opacity-50') { opacity: 0.5; }
+@include dual('opacity-60') { opacity: 0.6; }
+@include dual('opacity-70') { opacity: 0.7; }
+@include dual('opacity-75') { opacity: 0.75; }
+@include dual('opacity-80') { opacity: 0.8; }
+@include dual('opacity-90') { opacity: 0.9; }
+@include dual('opacity-100') { opacity: 1; }
+
+// --- Z-index ---
+@include dual('z-0') { z-index: 0; }
+@include dual('z-10') { z-index: 10; }
+@include dual('z-20') { z-index: 20; }
+@include dual('z-30') { z-index: 30; }
+@include dual('z-40') { z-index: 40; }
+@include dual('z-50') { z-index: 50; }
+@include dual('z-auto') { z-index: auto; }
+@include dual('z-dropdown') { z-index: var(--st-z-dropdown); }
+@include dual('z-sticky') { z-index: var(--st-z-sticky); }
+@include dual('z-fixed') { z-index: var(--st-z-fixed); }
+@include dual('z-modal') { z-index: var(--st-z-modal); }
+@include dual('z-tooltip') { z-index: var(--st-z-tooltip); }
+
+// --- Cursor ---
+@include dual('cursor-auto') { cursor: auto; }
+@include dual('cursor-default') { cursor: default; }
+@include dual('cursor-pointer') { cursor: pointer; }
+@include dual('cursor-wait') { cursor: wait; }
+@include dual('cursor-text') { cursor: text; }
+@include dual('cursor-move') { cursor: move; }
+@include dual('cursor-grab') { cursor: grab; }
+@include dual('cursor-grabbing') { cursor: grabbing; }
+@include dual('cursor-not-allowed') { cursor: not-allowed; }
+@include dual('cursor-crosshair') { cursor: crosshair; }
+@include dual('cursor-zoom-in') { cursor: zoom-in; }
+@include dual('cursor-zoom-out') { cursor: zoom-out; }
+
+// --- Pointer events ---
+@include dual('pointer-events-none') { pointer-events: none; }
+@include dual('pointer-events-auto') { pointer-events: auto; }
+
+// --- User select ---
+@include dual('select-none') { user-select: none; }
+@include dual('select-text') { user-select: text; }
+@include dual('select-all') { user-select: all; }
+@include dual('select-auto') { user-select: auto; }
+
+// --- Scroll behavior ---
+@include dual('scroll-smooth') { scroll-behavior: smooth; }
+@include dual('scroll-auto') { scroll-behavior: auto; }
+
+// --- Isolation ---
+@include dual('isolate') { isolation: isolate; }
+@include dual('isolation-auto') { isolation: auto; }

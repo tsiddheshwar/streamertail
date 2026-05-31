@@ -1,0 +1,42 @@
+// ===================================================================
+// DISPLAY — Visibility & display utility classes
+// ===================================================================
+@use 'mixins' as *;
+
+@include dual('block') { display: block; }
+@include dual('inline-block') { display: inline-block; }
+@include dual('inline') { display: inline; }
+@include dual('hidden') { display: none; }
+@include dual('invisible') { visibility: hidden; }
+@include dual('visible') { visibility: visible; }
+
+// Responsive display
+@each $bp, $width in $breakpoints {
+  @include breakpoint($width) {
+    .st-#{$bp}-hidden, .#{$bp}-hidden { display: none; }
+    .st-#{$bp}-block, .#{$bp}-block { display: block; }
+    .st-#{$bp}-inline-block, .#{$bp}-inline-block { display: inline-block; }
+    .st-#{$bp}-flex, .#{$bp}-flex { display: flex; }
+    .st-#{$bp}-grid, .#{$bp}-grid { display: grid; }
+  }
+}
+
+// Overflow
+@include dual('overflow-hidden') { overflow: hidden; }
+@include dual('overflow-auto') { overflow: auto; }
+@include dual('overflow-scroll') { overflow: scroll; }
+@include dual('overflow-x-auto') { overflow-x: auto; }
+@include dual('overflow-y-auto') { overflow-y: auto; }
+
+// Position
+@include dual('relative') { position: relative; }
+@include dual('absolute') { position: absolute; }
+@include dual('fixed') { position: fixed; }
+@include dual('sticky') { position: sticky; top: 0; }
+
+// Width / Height
+@include dual('w-full') { width: 100%; }
+@include dual('w-auto') { width: auto; }
+@include dual('h-full') { height: 100%; }
+@include dual('h-screen') { height: 100vh; }
+@include dual('min-h-screen') { min-height: 100vh; }

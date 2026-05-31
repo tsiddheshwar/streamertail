@@ -1,0 +1,59 @@
+// ===================================================================
+// GRID — CSS Grid utility classes
+// ===================================================================
+@use 'mixins' as *;
+
+@include dual('grid') {
+  display: grid;
+}
+
+// Grid columns (1-12)
+@for $i from 1 through 12 {
+  @include dual('grid-cols-#{$i}') {
+    grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+  }
+}
+
+// Column span
+@for $i from 1 through 12 {
+  @include dual('col-span-#{$i}') {
+    grid-column: span #{$i} / span #{$i};
+  }
+}
+@include dual('col-span-full') {
+  grid-column: 1 / -1;
+}
+
+// Row span
+@for $i from 1 through 6 {
+  @include dual('row-span-#{$i}') {
+    grid-row: span #{$i} / span #{$i};
+  }
+}
+
+// Gap
+$gap-values: (0: 0, 1: var(--st-space-1), 2: var(--st-space-2), 3: var(--st-space-3), 4: var(--st-space-4), 5: var(--st-space-5), 6: var(--st-space-6), 8: var(--st-space-8), 10: var(--st-space-10), 12: var(--st-space-12));
+
+@each $key, $val in $gap-values {
+  @include dual('gap-#{$key}') { gap: #{$val}; }
+  @include dual('gap-x-#{$key}') { column-gap: #{$val}; }
+  @include dual('gap-y-#{$key}') { row-gap: #{$val}; }
+}
+
+// Responsive grid columns
+@each $bp, $width in $breakpoints {
+  @include breakpoint($width) {
+    @for $i from 1 through 12 {
+      .st-#{$bp}-grid-cols-#{$i},
+      .#{$bp}-grid-cols-#{$i} {
+        grid-template-columns: repeat(#{$i}, minmax(0, 1fr));
+      }
+    }
+    @for $i from 1 through 12 {
+      .st-#{$bp}-col-span-#{$i},
+      .#{$bp}-col-span-#{$i} {
+        grid-column: span #{$i} / span #{$i};
+      }
+    }
+  }
+}
