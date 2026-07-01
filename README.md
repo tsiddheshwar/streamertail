@@ -34,6 +34,29 @@ npm install streamertail
 
 ## Quick Start
 
+### Demo Page
+
+You can explore the live demo in three ways:
+
+- From the package source: clone the repo and open [demo/index.html](demo/index.html) in a browser
+- From GitHub: open the repository demo page once published
+- From npm: install the package and use the same examples shown below in your own app
+
+For a local preview, run:
+
+```bash
+cd demo
+npx vite
+```
+
+Then open:
+
+```text
+http://localhost:5173/
+```
+
+If you want a public hosted version, this repository is ready for GitHub Pages deployment via the workflow in [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml).
+
 ### Static HTML / CDN
 
 ```html
@@ -818,6 +841,18 @@ a { color: green; }
 ```
 
 ---
+
+## Demo on GitHub Pages
+
+A GitHub Pages site can be published automatically from the repository by enabling GitHub Pages for the `gh-pages` branch.
+
+Once enabled, the demo will be available at:
+
+```text
+https://<your-username>.github.io/streamertail/
+```
+
+If you want to publish from a custom domain, update the Pages settings in GitHub and point the site to your domain.
 
 ## Development
 

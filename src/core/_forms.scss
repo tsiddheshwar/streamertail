@@ -6,7 +6,7 @@
 // --- Base input ---
 @include dual('input') {
   display: block;
-  width: 100%;
+  width: auto;
   padding: var(--st-space-2) var(--st-space-3);
   font-family: var(--st-font-family);
   font-size: var(--st-font-size-base);
