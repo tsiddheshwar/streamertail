@@ -1,0 +1,46 @@
+// ===================================================================
+// STREAMERTAIL SHARED MIXINS
+// Dual-class mixin: outputs both .st-{name} and .{name} selectors
+// When st- prefix is used → guaranteed Streamertail styles
+// When unprefixed is used → browser/cascade decides (may be overridden)
+// ===================================================================
+
+/// Outputs a ruleset under both `.st-$name` and `.$name`
+@mixin dual($name) {
+  .st-#{$name},
+  .#{$name} {
+    @content;
+  }
+}
+
+/// Outputs a ruleset under both `.st-$name:$pseudo` and `.$name:$pseudo`
+@mixin dual-pseudo($name, $pseudo) {
+  .st-#{$name}:#{$pseudo},
+  .#{$name}:#{$pseudo} {
+    @content;
+  }
+}
+
+/// Outputs rules for pseudo-classes (hover, focus, active, disabled, etc.)
+@mixin dual-state($name, $state) {
+  .st-#{$name}:#{$state},
+  .#{$name}:#{$state} {
+    @content;
+  }
+}
+
+/// For responsive breakpoint variants
+@mixin breakpoint($bp) {
+  @media (min-width: $bp) {
+    @content;
+  }
+}
+
+// Breakpoint map
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+);

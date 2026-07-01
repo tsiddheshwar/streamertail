@@ -1,0 +1,52 @@
+// ===================================================================
+// TEXT COLORS
+// ===================================================================
+@use 'mixins' as *;
+
+// Semantic text colors
+$text-colors: (
+  primary: var(--st-color-primary),
+  secondary: var(--st-color-secondary),
+  accent: var(--st-color-accent),
+  success: var(--st-color-success),
+  warning: var(--st-color-warning),
+  caution: var(--st-color-caution),
+  danger: var(--st-color-danger),
+  info: var(--st-color-info),
+  neutral: var(--st-color-neutral),
+  muted: var(--st-text-muted),
+  body: var(--st-text),
+  white: #ffffff,
+  black: #000000,
+  link: var(--st-text-link),
+);
+
+@each $name, $val in $text-colors {
+  @include dual('text-#{$name}') { color: #{$val}; }
+}
+
+// Color name aliases (red=danger, green=success, etc.)
+$text-aliases: (
+  red: var(--st-color-danger),
+  orange: var(--st-color-warning),
+  yellow: var(--st-color-caution),
+  green: var(--st-color-success),
+  blue: var(--st-color-info),
+  teal: var(--st-color-secondary),
+  error: var(--st-color-danger),
+);
+
+@each $name, $val in $text-aliases {
+  @include dual('text-#{$name}') { color: #{$val}; }
+}
+
+// Gray scale text
+@for $i from 1 through 9 {
+  $shade: $i * 100;
+  @include dual('text-gray-#{$shade}') { color: var(--st-color-gray-#{$shade}); }
+}
+
+// Link hover
+@include dual-state('text-link', hover) {
+  color: var(--st-text-link-hover);
+}

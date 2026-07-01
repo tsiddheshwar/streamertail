@@ -1,0 +1,74 @@
+// ===================================================================
+// SIZING — Width, height, max-width, aspect-ratio, object-fit
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Width ---
+@include dual('w-full') { width: 100%; }
+@include dual('w-auto') { width: auto; }
+@include dual('w-screen') { width: 100vw; }
+@include dual('w-fit') { width: fit-content; }
+@include dual('w-min') { width: min-content; }
+@include dual('w-max') { width: max-content; }
+
+.st-w-1\/2, .w-1\/2 { width: 50%; }
+.st-w-1\/3, .w-1\/3 { width: 33.333%; }
+.st-w-2\/3, .w-2\/3 { width: 66.667%; }
+.st-w-1\/4, .w-1\/4 { width: 25%; }
+.st-w-3\/4, .w-3\/4 { width: 75%; }
+
+// --- Height ---
+@include dual('h-full') { height: 100%; }
+@include dual('h-auto') { height: auto; }
+@include dual('h-screen') { height: 100vh; }
+@include dual('h-fit') { height: fit-content; }
+@include dual('min-h-0') { min-height: 0; }
+@include dual('min-h-full') { min-height: 100%; }
+@include dual('min-h-screen') { min-height: 100vh; }
+
+// --- Max-width ---
+@include dual('max-w-none') { max-width: none; }
+@include dual('max-w-xs') { max-width: 20rem; }
+@include dual('max-w-sm') { max-width: 24rem; }
+@include dual('max-w-md') { max-width: 28rem; }
+@include dual('max-w-lg') { max-width: 32rem; }
+@include dual('max-w-xl') { max-width: 36rem; }
+@include dual('max-w-2xl') { max-width: 42rem; }
+@include dual('max-w-3xl') { max-width: 48rem; }
+@include dual('max-w-4xl') { max-width: 56rem; }
+@include dual('max-w-5xl') { max-width: 64rem; }
+@include dual('max-w-6xl') { max-width: 72rem; }
+@include dual('max-w-7xl') { max-width: 80rem; }
+@include dual('max-w-full') { max-width: 100%; }
+@include dual('max-w-prose') { max-width: 65ch; }
+@include dual('max-w-screen-sm') { max-width: 576px; }
+@include dual('max-w-screen-md') { max-width: 768px; }
+@include dual('max-w-screen-lg') { max-width: 992px; }
+@include dual('max-w-screen-xl') { max-width: 1200px; }
+
+// --- Min-width ---
+@include dual('min-w-0') { min-width: 0; }
+@include dual('min-w-full') { min-width: 100%; }
+
+// --- Aspect ratio ---
+@include dual('aspect-auto') { aspect-ratio: auto; }
+@include dual('aspect-square') { aspect-ratio: 1 / 1; }
+@include dual('aspect-video') { aspect-ratio: 16 / 9; }
+
+.st-aspect-4\/3, .aspect-4\/3 { aspect-ratio: 4 / 3; }
+.st-aspect-3\/2, .aspect-3\/2 { aspect-ratio: 3 / 2; }
+.st-aspect-21\/9, .aspect-21\/9 { aspect-ratio: 21 / 9; }
+
+// --- Object fit ---
+@include dual('object-cover') { object-fit: cover; }
+@include dual('object-contain') { object-fit: contain; }
+@include dual('object-fill') { object-fit: fill; }
+@include dual('object-none') { object-fit: none; }
+@include dual('object-scale-down') { object-fit: scale-down; }
+
+// --- Object position ---
+@include dual('object-center') { object-position: center; }
+@include dual('object-top') { object-position: top; }
+@include dual('object-bottom') { object-position: bottom; }
+@include dual('object-left') { object-position: left; }
+@include dual('object-right') { object-position: right; }

@@ -1,0 +1,27 @@
+// ===================================================================
+// CONTAINER — Responsive centered container
+// ===================================================================
+@use 'mixins' as *;
+
+@include dual('container') {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--st-space-4);
+  padding-right: var(--st-space-4);
+}
+
+@media (min-width: 576px)  { .st-container, .container { max-width: var(--st-container-sm); } }
+@media (min-width: 768px)  { .st-container, .container { max-width: var(--st-container-md); } }
+@media (min-width: 992px)  { .st-container, .container { max-width: var(--st-container-lg); } }
+@media (min-width: 1200px) { .st-container, .container { max-width: var(--st-container-xl); } }
+@media (min-width: 1400px) { .st-container, .container { max-width: var(--st-container-xxl); } }
+
+// Fluid container (no max-width)
+@include dual('container-fluid') {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--st-space-4);
+  padding-right: var(--st-space-4);
+}

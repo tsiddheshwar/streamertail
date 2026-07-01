@@ -1,0 +1,57 @@
+// ===================================================================
+// BACKGROUND COLORS
+// ===================================================================
+@use 'mixins' as *;
+
+// Semantic backgrounds
+$bg-colors: (
+  primary: var(--st-color-primary),
+  secondary: var(--st-color-secondary),
+  accent: var(--st-color-accent),
+  success: var(--st-color-success),
+  warning: var(--st-color-warning),
+  caution: var(--st-color-caution),
+  danger: var(--st-color-danger),
+  info: var(--st-color-info),
+  neutral: var(--st-color-neutral),
+  white: #ffffff,
+  black: #000000,
+  transparent: transparent,
+);
+
+@each $name, $val in $bg-colors {
+  @include dual('bg-#{$name}') { background-color: #{$val}; }
+}
+
+// Light variants (for alerts/badges)
+$bg-light-colors: (
+  success-light: var(--st-color-success-light),
+  warning-light: var(--st-color-warning-light),
+  caution-light: var(--st-color-caution-light),
+  danger-light: var(--st-color-danger-light),
+  info-light: var(--st-color-info-light),
+  neutral-light: var(--st-color-neutral-light),
+);
+
+@each $name, $val in $bg-light-colors {
+  @include dual('bg-#{$name}') { background-color: #{$val}; }
+}
+
+// Surface backgrounds (theme-aware)
+@include dual('bg-surface') { background-color: var(--st-bg-surface); }
+@include dual('bg-elevated') { background-color: var(--st-bg-elevated); }
+@include dual('bg-overlay') { background-color: var(--st-bg-overlay); }
+
+// Gray backgrounds
+@for $i from 1 through 9 {
+  $shade: $i * 100;
+  @include dual('bg-gray-#{$shade}') { background-color: var(--st-color-gray-#{$shade}); }
+}
+
+// Aliases
+@include dual('bg-red') { background-color: var(--st-color-danger); }
+@include dual('bg-orange') { background-color: var(--st-color-warning); }
+@include dual('bg-yellow') { background-color: var(--st-color-caution); }
+@include dual('bg-green') { background-color: var(--st-color-success); }
+@include dual('bg-blue') { background-color: var(--st-color-info); }
+@include dual('bg-teal') { background-color: var(--st-color-secondary); }

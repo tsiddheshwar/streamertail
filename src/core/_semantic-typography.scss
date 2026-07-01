@@ -1,0 +1,340 @@
+// ===================================================================
+// SEMANTIC TYPOGRAPHY — Prose, Lead, Caption, Overline, Kbd, etc.
+// Semantic text classes for common content patterns
+// ===================================================================
+@use 'mixins' as *;
+
+// ---------------------------------------------------------------------------
+// PROSE — Readable content area with nice typographic defaults
+// Usage: <article class="st-prose">long-form content...</article>
+// ---------------------------------------------------------------------------
+@include dual('prose') {
+  max-width: 65ch;
+  line-height: var(--st-line-height-relaxed);
+  font-size: var(--st-font-size-base);
+  color: var(--st-text);
+
+  > * + * {
+    margin-top: 1.25em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 2em;
+    margin-bottom: 0.75em;
+    font-weight: var(--st-font-weight-bold);
+    line-height: var(--st-line-height-tight);
+  }
+
+  h1 { font-size: 2.25em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  h4 { font-size: 1.125em; }
+
+  p {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  a {
+    color: var(--st-color-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: var(--st-color-primary-hover);
+    }
+  }
+
+  strong {
+    font-weight: var(--st-font-weight-semibold);
+  }
+
+  ul, ol {
+    padding-left: 1.5em;
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+  }
+
+  li + li {
+    margin-top: 0.5em;
+  }
+
+  blockquote {
+    padding-left: 1em;
+    border-left: 3px solid var(--st-border-color-strong);
+    color: var(--st-text-secondary);
+    font-style: italic;
+    margin: 1.5em 0;
+  }
+
+  code {
+    font-family: var(--st-font-family-mono);
+    font-size: 0.875em;
+    background-color: var(--st-bg-surface);
+    padding: 0.2em 0.4em;
+    border-radius: var(--st-border-radius-sm);
+  }
+
+  pre {
+    overflow-x: auto;
+    padding: var(--st-space-4);
+    background-color: var(--st-color-gray-900);
+    color: var(--st-color-gray-100);
+    border-radius: var(--st-border-radius);
+    font-size: 0.875em;
+    line-height: 1.7;
+    margin: 1.5em 0;
+
+    code {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      color: inherit;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--st-border-radius);
+    margin: 1.5em 0;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--st-border-color);
+    margin: 2em 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5em 0;
+    font-size: 0.875em;
+  }
+
+  th, td {
+    padding: 0.75em 1em;
+    border-bottom: 1px solid var(--st-border-color);
+    text-align: left;
+  }
+
+  th {
+    font-weight: var(--st-font-weight-semibold);
+  }
+}
+
+@include dual('prose-sm') {
+  max-width: 55ch;
+  font-size: var(--st-font-size-sm);
+  line-height: var(--st-line-height-relaxed);
+
+  > * + * {
+    margin-top: 1em;
+  }
+}
+
+@include dual('prose-lg') {
+  max-width: 75ch;
+  font-size: var(--st-font-size-lg);
+  line-height: var(--st-line-height-relaxed);
+
+  > * + * {
+    margin-top: 1.5em;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// LEAD — Intro/opening paragraph (larger, slightly muted)
+// Usage: <p class="st-lead">This article explores...</p>
+// ---------------------------------------------------------------------------
+@include dual('lead') {
+  font-size: var(--st-font-size-xl);
+  line-height: var(--st-line-height-relaxed);
+  color: var(--st-text-secondary);
+}
+
+// ---------------------------------------------------------------------------
+// CAPTION — Small descriptive text (images, tables, figures)
+// Usage: <figcaption class="st-caption">Photo by...</figcaption>
+// ---------------------------------------------------------------------------
+@include dual('caption') {
+  font-size: var(--st-font-size-sm);
+  color: var(--st-text-muted);
+  line-height: var(--st-line-height-normal);
+}
+
+// ---------------------------------------------------------------------------
+// OVERLINE — Small uppercase label above headings
+// Usage: <span class="st-overline">Featured</span>
+// ---------------------------------------------------------------------------
+@include dual('overline') {
+  font-size: 0.75rem;
+  font-weight: var(--st-font-weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--st-text-muted);
+  line-height: 1;
+}
+
+// ---------------------------------------------------------------------------
+// SUBTITLE — Secondary text paired with a heading
+// Usage: <h2>Title</h2><p class="st-subtitle">Subtitle here</p>
+// ---------------------------------------------------------------------------
+@include dual('subtitle') {
+  font-size: var(--st-font-size-lg);
+  color: var(--st-text-secondary);
+  font-weight: var(--st-font-weight-normal);
+  line-height: var(--st-line-height-normal);
+}
+
+// ---------------------------------------------------------------------------
+// DISPLAY — Large decorative heading (hero titles)
+// Usage: <h1 class="st-display">Big Headline</h1>
+// ---------------------------------------------------------------------------
+@include dual('display-1') {
+  font-size: clamp(3rem, 2rem + 5vw, 5rem);
+  font-weight: var(--st-font-weight-bold);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@include dual('display-2') {
+  font-size: clamp(2.5rem, 1.5rem + 4vw, 4rem);
+  font-weight: var(--st-font-weight-bold);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+@include dual('display-3') {
+  font-size: clamp(2rem, 1.25rem + 3vw, 3rem);
+  font-weight: var(--st-font-weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+// ---------------------------------------------------------------------------
+// KBD — Keyboard key styling
+// Usage: Press <kbd class="st-kbd">Ctrl</kbd> + <kbd class="st-kbd">C</kbd>
+// ---------------------------------------------------------------------------
+@include dual('kbd') {
+  display: inline-block;
+  padding: 0.15em 0.4em;
+  font-family: var(--st-font-family-mono);
+  font-size: 0.85em;
+  line-height: 1;
+  color: var(--st-text);
+  background-color: var(--st-bg-surface);
+  border: 1px solid var(--st-border-color-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--st-border-radius-sm);
+  white-space: nowrap;
+}
+
+// ---------------------------------------------------------------------------
+// CODE INLINE — Styled inline code
+// Usage: <code class="st-code">variable</code>
+// ---------------------------------------------------------------------------
+@include dual('code') {
+  font-family: var(--st-font-family-mono);
+  font-size: 0.875em;
+  padding: 0.2em 0.4em;
+  background-color: var(--st-bg-surface);
+  border-radius: var(--st-border-radius-sm);
+  color: var(--st-color-danger);
+}
+
+// ---------------------------------------------------------------------------
+// BLOCKQUOTE — Styled pull quote
+// Usage: <blockquote class="st-blockquote">Wise words...</blockquote>
+// ---------------------------------------------------------------------------
+@include dual('blockquote') {
+  padding: var(--st-space-4) var(--st-space-6);
+  border-left: 4px solid var(--st-color-primary);
+  background-color: var(--st-bg-surface);
+  border-radius: 0 var(--st-border-radius) var(--st-border-radius) 0;
+  font-style: italic;
+  color: var(--st-text-secondary);
+}
+
+@include dual('blockquote-accent') {
+  padding: var(--st-space-4) var(--st-space-6);
+  border-left: 4px solid var(--st-color-accent);
+  background-color: var(--st-bg-surface);
+  border-radius: 0 var(--st-border-radius) var(--st-border-radius) 0;
+  font-style: italic;
+  color: var(--st-text-secondary);
+}
+
+// ---------------------------------------------------------------------------
+// LIST STYLES — Semantic list presentations
+// ---------------------------------------------------------------------------
+@include dual('list-none') {
+  list-style: none;
+  padding-left: 0;
+}
+
+@include dual('list-disc') {
+  list-style-type: disc;
+  padding-left: 1.5em;
+}
+
+@include dual('list-decimal') {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+}
+
+@include dual('list-check') {
+  list-style: none;
+  padding-left: 0;
+
+  > li {
+    padding-left: 1.5em;
+    position: relative;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--st-color-success);
+      font-weight: var(--st-font-weight-bold);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
+// LABEL — Small informational label
+// Usage: <span class="st-label-text">Required</span>
+// ---------------------------------------------------------------------------
+@include dual('label-text') {
+  font-size: 0.75rem;
+  font-weight: var(--st-font-weight-medium);
+  color: var(--st-text-secondary);
+  letter-spacing: 0.025em;
+}
+
+// ---------------------------------------------------------------------------
+// NUMERIC — Tabular/proportional number styling
+// ---------------------------------------------------------------------------
+@include dual('tabular-nums') {
+  font-variant-numeric: tabular-nums;
+}
+
+@include dual('proportional-nums') {
+  font-variant-numeric: proportional-nums;
+}
+
+@include dual('oldstyle-nums') {
+  font-variant-numeric: oldstyle-nums;
+}
+
+// ---------------------------------------------------------------------------
+// TEXT BALANCE / PRETTY — Modern typographic wrapping
+// ---------------------------------------------------------------------------
+@include dual('text-balance') {
+  text-wrap: balance;
+}
+
+@include dual('text-pretty') {
+  text-wrap: pretty;
+}

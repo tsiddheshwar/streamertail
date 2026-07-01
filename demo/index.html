@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Streamertail — Complete Feature Demo</title>
+  <link rel="stylesheet" href="../dist/streamertail.css" />
+  <style>
+    /* Demo-only chrome — not Streamertail classes */
+    .demo-section { padding: var(--st-space-8) 0; border-bottom: 1px solid var(--st-border-color); }
+    .demo-label { display: inline-block; font-family: var(--st-font-family-mono); font-size: 0.7rem; background: var(--st-bg-surface); border: 1px solid var(--st-border-color); border-radius: 4px; padding: 0.1em 0.4em; color: var(--st-text-muted); margin-bottom: 4px; }
+    .demo-row { display: flex; flex-wrap: wrap; gap: var(--st-space-3); align-items: center; margin-bottom: var(--st-space-4); }
+    .demo-col { display: flex; flex-direction: column; gap: var(--st-space-2); margin-bottom: var(--st-space-4); }
+    .demo-box { padding: var(--st-space-3) var(--st-space-4); min-width: 80px; text-align: center; }
+    .section-title { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--st-text-muted); font-weight: 600; margin-bottom: var(--st-space-2); padding-bottom: var(--st-space-1); border-bottom: 1px solid var(--st-border-color); }
+    #top-nav { position: sticky; top: 0; z-index: 100; background: var(--st-bg); border-bottom: 1px solid var(--st-border-color); padding: 0.4rem 0; }
+    #top-nav .nav-links { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    #top-nav a { display: inline-block; padding: 0.2rem 0.6rem; font-size: 0.72rem; color: var(--st-text-muted); text-decoration: none; border-radius: 999px; border: 1px solid transparent; line-height: 1.6; }
+    #top-nav a:hover { background: var(--st-bg-surface); color: var(--st-text); border-color: var(--st-border-color); }
+    #top-nav a:focus-visible { outline: 2px solid var(--st-color-primary); outline-offset: 2px; border-radius: 999px; }
+    .palette-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 0.5rem; }
+    .mt-4 { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="container py-3">
+    <div class="flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="heading-5 font-bold">Streamertail</span>
+        <span class="badge-soft-primary">v0.4.0</span>
+        <span class="text-muted text-sm">Complete Feature Demo</span>
+      </div>
+      <div class="flex gap-2 items-center">
+        <button class="btn btn-sm btn-outline" onclick="toggleTheme()">Toggle Theme</button>
+        <span class="text-muted text-xs" id="theme-label">Light</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY NAV -->
+  <div id="top-nav">
+    <div class="container">
+      <div class="nav-links">
+      <a href="#typography">Typography</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#forms">Forms</a>
+      <a href="#colors">Colors</a>
+      <a href="#semantic-states">Semantic States</a>
+      <a href="#semantic-typography">Sem. Typography</a>
+      <a href="#grid">Grid</a>
+      <a href="#flexbox">Flexbox</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#display">Display &amp; Position</a>
+      <a href="#borders">Borders &amp; Radius</a>
+      <a href="#sizing">Sizing</a>
+      <a href="#divide">Divide</a>
+      <a href="#utilities">Utilities</a>
+      <a href="#semantic-layouts">Layouts</a>
+      <a href="#animations">Animations</a>
+      <a href="#easter-eggs">Easter Eggs 🥚</a>
+      <a href="#accessibility">Accessibility</a>
+      <a href="#dark-inline">Inline Dark</a>
+      <a href="#raw-html">Raw HTML</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 1. TYPOGRAPHY ============================================= -->
+  <div id="typography" class="container demo-section">
+    <h2 class="heading-3 mb-6">Typography</h2>
+
+    <p class="section-title">Headings — .heading-1 … .heading-6</p>
+    <div class="demo-col mb-6">
+      <p class="heading-1">Heading 1 <span class="demo-label">.heading-1</span></p>
+      <p class="heading-2">Heading 2 <span class="demo-label">.heading-2</span></p>
+      <p class="heading-3">Heading 3 <span class="demo-label">.heading-3</span></p>
+      <p class="heading-4">Heading 4 <span class="demo-label">.heading-4</span></p>
+      <p class="heading-5">Heading 5 <span class="demo-label">.heading-5</span></p>
+      <p class="heading-6">Heading 6 <span class="demo-label">.heading-6</span></p>
+    </div>
+
+    <p class="section-title">Font Sizes — .text-xs … .text-5xl</p>
+    <div class="demo-col mb-6">
+      <span class="text-xs">text-xs — The quick brown fox</span>
+      <span class="text-sm">text-sm — The quick brown fox</span>
+      <span class="text-base">text-base — The quick brown fox</span>
+      <span class="text-body">text-body — The quick brown fox</span>
+      <span class="text-lg">text-lg — The quick brown fox</span>
+      <span class="text-xl">text-xl — The quick brown fox</span>
+      <span class="text-2xl">text-2xl — The quick brown fox</span>
+      <span class="text-3xl">text-3xl — Streamertail</span>
+      <span class="text-4xl">text-4xl — Streamertail</span>
+      <span class="text-5xl">text-5xl — Streamertail</span>
+    </div>
+
+    <p class="section-title">Font Weights — .font-light / .font-normal / .font-medium / .font-semibold / .font-bold</p>
+    <div class="demo-row mb-6">
+      <span class="font-light text-lg">font-light</span>
+      <span class="font-normal text-lg">font-normal</span>
+      <span class="font-medium text-lg">font-medium</span>
+      <span class="font-semibold text-lg">font-semibold</span>
+      <span class="font-bold text-lg">font-bold</span>
+    </div>
+
+    <p class="section-title">Font Family — .font-sans / .font-mono</p>
+    <div class="demo-col mb-6">
+      <span class="font-sans">font-sans — The quick brown fox jumps over the lazy dog</span>
+      <span class="font-mono">font-mono — The quick brown fox jumps over the lazy dog</span>
+    </div>
+
+    <p class="section-title">Text Alignment — .text-left / .text-center / .text-right / .text-justify</p>
+    <div class="demo-col mb-6" style="max-width:420px;">
+      <p class="text-left border p-2 rounded">text-left — aligned left</p>
+      <p class="text-center border p-2 rounded">text-center — aligned center</p>
+      <p class="text-right border p-2 rounded">text-right — aligned right</p>
+      <p class="text-justify border p-2 rounded">text-justify — The quick brown fox jumps over the lazy dog. Justified text fills the full line width of the container element.</p>
+    </div>
+
+    <p class="section-title">Text Transform — .text-uppercase / .text-lowercase / .text-capitalize / .text-normal-case</p>
+    <div class="demo-row mb-6">
+      <span class="text-uppercase font-semibold">text-uppercase</span>
+      <span class="text-lowercase font-semibold">TEXT-LOWERCASE</span>
+      <span class="text-capitalize">text capitalize each word</span>
+      <span class="text-normal-case font-semibold">TEXT-NORMAL-CASE (reset)</span>
+    </div>
+
+    <p class="section-title">Text Decoration — .text-underline / .text-line-through / .text-no-underline</p>
+    <div class="demo-row mb-6">
+      <span class="text-underline">text-underline</span>
+      <span class="text-line-through">text-line-through</span>
+      <a class="text-no-underline text-primary" href="#">text-no-underline on a link</a>
+    </div>
+
+    <p class="section-title">Line Height — .leading-tight / .leading-normal / .leading-relaxed</p>
+    <div class="demo-row mb-6">
+      <div class="leading-tight border p-3 rounded text-sm" style="max-width:160px;">leading-tight<br>Line two<br>Line three</div>
+      <div class="leading-normal border p-3 rounded text-sm" style="max-width:160px;">leading-normal<br>Line two<br>Line three</div>
+      <div class="leading-relaxed border p-3 rounded text-sm" style="max-width:160px;">leading-relaxed<br>Line two<br>Line three</div>
+    </div>
+
+    <p class="section-title">Letter Spacing — .tracking-tighter / .tracking-tight / .tracking-normal / .tracking-wide / .tracking-wider / .tracking-widest</p>
+    <div class="demo-col mb-6">
+      <span class="tracking-tighter font-semibold">tracking-tighter — STREAMERTAIL DEMO</span>
+      <span class="tracking-tight font-semibold">tracking-tight — STREAMERTAIL DEMO</span>
+      <span class="tracking-normal font-semibold">tracking-normal — STREAMERTAIL DEMO</span>
+      <span class="tracking-wide font-semibold">tracking-wide — STREAMERTAIL DEMO</span>
+      <span class="tracking-wider font-semibold">tracking-wider — STREAMERTAIL DEMO</span>
+      <span class="tracking-widest font-semibold">tracking-widest — STREAMERTAIL DEMO</span>
+    </div>
+
+    <p class="section-title">Text Overflow — .text-truncate / .text-nowrap / .text-break</p>
+    <div class="demo-col mb-2" style="max-width:320px;">
+      <div class="text-truncate border p-2 rounded text-sm"><span class="demo-label">.text-truncate</span> The quick brown fox jumps over the lazy dog — this text is very long and should be truncated with an ellipsis</div>
+      <div class="text-nowrap border p-2 rounded overflow-x-auto text-sm"><span class="demo-label">.text-nowrap</span> This long text will not wrap to a new line regardless of container width</div>
+      <div class="text-break border p-2 rounded text-sm"><span class="demo-label">.text-break</span> superlongwordwithnobreakspossiblewhatoeverwillhappen</div>
+    </div>
+  </div>
+
+  <!-- ===== 2. BUTTONS ================================================ -->
+  <div id="buttons" class="container demo-section">
+    <h2 class="heading-3 mb-6">Buttons</h2>
+
+    <p class="section-title">Solid Variants — .btn-{color}</p>
+    <div class="demo-row mb-4">
+      <button class="btn btn-primary">btn-primary</button>
+      <button class="btn btn-secondary">btn-secondary</button>
+      <button class="btn btn-accent">btn-accent</button>
+      <button class="btn btn-success">btn-success</button>
+      <button class="btn btn-warning">btn-warning</button>
+      <button class="btn btn-danger">btn-danger</button>
+      <button class="btn btn-info">btn-info</button>
+      <button class="btn btn-neutral">btn-neutral</button>
+    </div>
+
+    <p class="section-title">Outline &amp; Ghost Variants</p>
+    <div class="demo-row mb-4">
+      <button class="btn btn-outline">btn-outline</button>
+      <button class="btn btn-outline-primary">btn-outline-primary</button>
+      <button class="btn btn-outline-danger">btn-outline-danger</button>
+      <button class="btn btn-ghost">btn-ghost</button>
+    </div>
+
+    <p class="section-title">Sizes — .btn-xs / .btn-sm / (default) / .btn-lg / .btn-xl</p>
+    <div class="demo-row items-center mb-4">
+      <button class="btn btn-primary btn-xs">btn-xs</button>
+      <button class="btn btn-primary btn-sm">btn-sm</button>
+      <button class="btn btn-primary">default</button>
+      <button class="btn btn-primary btn-lg">btn-lg</button>
+      <button class="btn btn-primary btn-xl">btn-xl</button>
+    </div>
+
+    <p class="section-title">Shapes — .btn-pill / .btn-square / .btn-full</p>
+    <div class="demo-col mb-4">
+      <div class="demo-row">
+        <button class="btn btn-primary btn-pill">btn-pill</button>
+        <button class="btn btn-secondary btn-square">btn-square (no radius)</button>
+        <button class="btn btn-primary" disabled>disabled</button>
+      </div>
+      <button class="btn btn-success btn-full">btn-full (100% width)</button>
+    </div>
+
+    <p class="section-title">Button Group — .btn-group</p>
+    <div class="demo-row mb-4">
+      <div class="btn-group">
+        <button class="btn btn-outline-primary">Left</button>
+        <button class="btn btn-outline-primary">Center</button>
+        <button class="btn btn-outline-primary">Right</button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary">Save</button>
+        <button class="btn btn-primary btn-xs px-2">▾</button>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-danger">Delete</button>
+        <button class="btn btn-warning">Archive</button>
+        <button class="btn btn-success">Restore</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 3. FORMS ================================================== -->
+  <div id="forms" class="container demo-section">
+    <h2 class="heading-3 mb-6">Forms</h2>
+
+    <p class="section-title">Input Sizes — .input-sm / .input (default) / .input-lg</p>
+    <div class="demo-col mb-6" style="max-width:380px;">
+      <div><div class="demo-label">.input-sm</div><input class="input input-sm" type="text" placeholder="Small input" /></div>
+      <div><div class="demo-label">.input (default)</div><input class="input" type="text" placeholder="Default input" /></div>
+      <div><div class="demo-label">.input-lg</div><input class="input input-lg" type="text" placeholder="Large input" /></div>
+    </div>
+
+    <p class="section-title">Validation States — .input-success / .input-error / disabled</p>
+    <div class="grid grid-cols-1 md-grid-cols-3 gap-4 mb-6" style="max-width:640px;">
+      <div class="form-group">
+        <label class="label">Success</label>
+        <input class="input input-success" type="text" value="Valid value" />
+        <span class="form-helper text-success">Looks good!</span>
+      </div>
+      <div class="form-group">
+        <label class="label">Error</label>
+        <input class="input input-error" type="text" value="Invalid value" />
+        <span class="form-error">This field has an error.</span>
+      </div>
+      <div class="form-group">
+        <label class="label">Disabled</label>
+        <input class="input" type="text" value="Disabled input" disabled />
+        <span class="form-helper">Cannot be edited.</span>
+      </div>
+    </div>
+
+    <p class="section-title">Textarea &amp; Select — textarea.input / select.input</p>
+    <div class="grid grid-cols-1 md-grid-cols-2 gap-4 mb-6" style="max-width:560px;">
+      <div class="form-group">
+        <label class="label label-required">Message</label>
+        <textarea class="input" rows="4" placeholder="Write your message here..."></textarea>
+        <span class="form-helper">Max 500 characters.</span>
+      </div>
+      <div class="form-group">
+        <label class="label">Country</label>
+        <select class="input">
+          <option value="">Select a country…</option>
+          <optgroup label="Europe"><option>France</option><option>Germany</option></optgroup>
+          <optgroup label="Asia"><option>India</option><option>Japan</option></optgroup>
+        </select>
+      </div>
+    </div>
+
+    <p class="section-title">Checkbox &amp; Radio — .checkbox / .radio</p>
+    <div class="demo-row mb-6">
+      <label class="checkbox"><input type="checkbox" checked /> Accept terms &amp; conditions</label>
+      <label class="checkbox"><input type="checkbox" /> Subscribe to newsletter</label>
+      <label class="radio"><input type="radio" name="demo-radio" checked /> Option A</label>
+      <label class="radio"><input type="radio" name="demo-radio" /> Option B</label>
+      <label class="radio"><input type="radio" name="demo-radio" /> Option C</label>
+    </div>
+
+    <p class="section-title">Full Form — .form-group / .label / .label-required / .form-helper / .form-error</p>
+    <div class="grid grid-cols-1 md-grid-cols-2 gap-x-6 gap-y-2 mb-6" style="max-width:640px;">
+      <div class="form-group">
+        <label class="label label-required">Full Name</label>
+        <input class="input" type="text" placeholder="John Doe" />
+      </div>
+      <div class="form-group">
+        <label class="label label-required">Email</label>
+        <input class="input" type="email" placeholder="john@example.com" />
+        <span class="form-helper">We'll never share your email.</span>
+      </div>
+      <div class="form-group">
+        <label class="label">Password</label>
+        <input class="input input-error" type="password" placeholder="••••••••" />
+        <span class="form-error">Password must be at least 8 characters.</span>
+      </div>
+      <div class="form-group">
+        <label class="label">Role</label>
+        <select class="input">
+          <option>Developer</option><option>Designer</option><option>Manager</option>
+        </select>
+      </div>
+    </div>
+
+    <p class="section-title">Form Inline — .form-inline</p>
+    <div class="form-inline mb-4" style="max-width:520px;">
+      <div class="form-group">
+        <label class="label">Search</label>
+        <input class="input" type="search" placeholder="Search…" />
+      </div>
+      <div class="form-group">
+        <label class="label">Filter</label>
+        <select class="input"><option>All</option><option>Active</option><option>Archived</option></select>
+      </div>
+      <button class="btn btn-primary" style="align-self:flex-end;margin-bottom:1rem;">Go</button>
+    </div>
+  </div>
+
+  <!-- ===== 4. COLORS ================================================= -->
+  <div id="colors" class="container demo-section">
+    <h2 class="heading-3 mb-6">Colors</h2>
+
+    <p class="section-title">Text Colors — .text-{color}</p>
+    <div class="demo-row mb-4">
+      <span class="text-primary font-semibold">text-primary</span>
+      <span class="text-secondary font-semibold">text-secondary</span>
+      <span class="text-accent font-semibold">text-accent</span>
+      <span class="text-success font-semibold">text-success</span>
+      <span class="text-warning font-semibold">text-warning</span>
+      <span class="text-caution font-semibold">text-caution</span>
+      <span class="text-danger font-semibold">text-danger</span>
+      <span class="text-info font-semibold">text-info</span>
+      <span class="text-neutral font-semibold">text-neutral</span>
+      <span class="text-muted font-semibold">text-muted</span>
+      <span class="text-link font-semibold">text-link</span>
+    </div>
+
+    <p class="section-title">Text Color Aliases — .text-red / .text-green / .text-blue / .text-teal / .text-orange / .text-yellow / .text-error</p>
+    <div class="demo-row mb-4">
+      <span class="text-red font-semibold">text-red</span>
+      <span class="text-green font-semibold">text-green</span>
+      <span class="text-blue font-semibold">text-blue</span>
+      <span class="text-teal font-semibold">text-teal</span>
+      <span class="text-orange font-semibold">text-orange</span>
+      <span class="text-yellow font-semibold">text-yellow</span>
+      <span class="text-error font-semibold">text-error</span>
+    </div>
+
+    <p class="section-title">Gray Scale Text — .text-gray-100 … .text-gray-900</p>
+    <div class="demo-row mb-6">
+      <span class="text-gray-100 bg-neutral px-2 py-1 rounded text-sm font-semibold">100</span>
+      <span class="text-gray-200 bg-neutral px-2 py-1 rounded text-sm font-semibold">200</span>
+      <span class="text-gray-300 bg-neutral px-2 py-1 rounded text-sm font-semibold">300</span>
+      <span class="text-gray-400 text-sm font-semibold">400</span>
+      <span class="text-gray-500 text-sm font-semibold">500</span>
+      <span class="text-gray-600 text-sm font-semibold">600</span>
+      <span class="text-gray-700 text-sm font-semibold">700</span>
+      <span class="text-gray-800 text-sm font-semibold">800</span>
+      <span class="text-gray-900 text-sm font-semibold">900</span>
+    </div>
+
+    <p class="section-title">Background Colors — .bg-{color}</p>
+    <div class="palette-grid mb-4">
+      <div class="demo-box bg-primary text-white rounded text-sm">bg-primary</div>
+      <div class="demo-box bg-secondary text-white rounded text-sm">bg-secondary</div>
+      <div class="demo-box bg-accent rounded text-sm">bg-accent</div>
+      <div class="demo-box bg-success text-white rounded text-sm">bg-success</div>
+      <div class="demo-box bg-warning text-white rounded text-sm">bg-warning</div>
+      <div class="demo-box bg-caution rounded text-sm">bg-caution</div>
+      <div class="demo-box bg-danger text-white rounded text-sm">bg-danger</div>
+      <div class="demo-box bg-info text-white rounded text-sm">bg-info</div>
+      <div class="demo-box bg-neutral text-white rounded text-sm">bg-neutral</div>
+      <div class="demo-box bg-white text-black border rounded text-sm">bg-white</div>
+      <div class="demo-box bg-black text-white rounded text-sm">bg-black</div>
+      <div class="demo-box bg-surface border rounded text-sm">bg-surface</div>
+      <div class="demo-box bg-elevated border shadow-sm rounded text-sm">bg-elevated</div>
+    </div>
+
+    <p class="section-title">Light Tints — .bg-{color}-light</p>
+    <div class="palette-grid mb-6">
+      <div class="demo-box bg-success-light text-success rounded text-sm">success-light</div>
+      <div class="demo-box bg-warning-light text-warning rounded text-sm">warning-light</div>
+      <div class="demo-box bg-caution-light text-caution rounded text-sm">caution-light</div>
+      <div class="demo-box bg-danger-light text-danger rounded text-sm">danger-light</div>
+      <div class="demo-box bg-info-light text-info rounded text-sm">info-light</div>
+      <div class="demo-box bg-neutral-light text-neutral rounded text-sm">neutral-light</div>
+    </div>
+
+    <p class="section-title">Border Colors — .border-{color}</p>
+    <div class="demo-row mb-6">
+      <div class="border-2 border-primary p-3 rounded text-sm">border-primary</div>
+      <div class="border-2 border-secondary p-3 rounded text-sm">border-secondary</div>
+      <div class="border-2 border-success p-3 rounded text-sm">border-success</div>
+      <div class="border-2 border-danger p-3 rounded text-sm">border-danger</div>
+      <div class="border-2 border-warning p-3 rounded text-sm">border-warning</div>
+      <div class="border-2 border-info p-3 rounded text-sm">border-info</div>
+    </div>
+
+    <p class="section-title">Elevation Shadows — .shadow-none / .shadow-xs / .shadow-sm / .shadow / .shadow-md / .shadow-lg / .shadow-xl / .shadow-inner</p>
+    <div class="demo-row mb-6 flex-wrap">
+      <div class="demo-box bg-elevated rounded shadow-none border text-sm">shadow-none</div>
+      <div class="demo-box bg-elevated rounded shadow-xs text-sm">shadow-xs</div>
+      <div class="demo-box bg-elevated rounded shadow-sm text-sm">shadow-sm</div>
+      <div class="demo-box bg-elevated rounded shadow text-sm">shadow</div>
+      <div class="demo-box bg-elevated rounded shadow-md text-sm">shadow-md</div>
+      <div class="demo-box bg-elevated rounded shadow-lg text-sm">shadow-lg</div>
+      <div class="demo-box bg-elevated rounded shadow-xl text-sm">shadow-xl</div>
+      <div class="demo-box bg-elevated rounded shadow-inner text-sm">shadow-inner</div>
+    </div>
+
+    <p class="section-title">Color Shadows (glow) — .shadow-primary / .shadow-success / .shadow-danger / .shadow-warning</p>
+    <div class="demo-row mb-6">
+      <div class="demo-box bg-primary text-white rounded shadow-primary text-sm">shadow-primary</div>
+      <div class="demo-box bg-success text-white rounded shadow-success text-sm">shadow-success</div>
+      <div class="demo-box bg-danger text-white rounded shadow-danger text-sm">shadow-danger</div>
+      <div class="demo-box bg-warning text-white rounded shadow-warning text-sm">shadow-warning</div>
+    </div>
+
+    <p class="section-title">Hover Colors — hover on each element to see the effect</p>
+    <div class="demo-row mb-4">
+      <div class="demo-box border rounded cursor-pointer hover-bg-primary hover-text-white transition-colors text-sm">hover-bg-primary</div>
+      <div class="demo-box border rounded cursor-pointer hover-bg-secondary hover-text-white transition-colors text-sm">hover-bg-secondary</div>
+      <div class="demo-box border rounded cursor-pointer hover-bg-danger hover-text-white transition-colors text-sm">hover-bg-danger</div>
+      <div class="demo-box border rounded cursor-pointer hover-bg-success hover-text-white transition-colors text-sm">hover-bg-success</div>
+      <div class="demo-box border rounded cursor-pointer hover-bg-surface transition-colors text-sm">hover-bg-surface</div>
+      <div class="demo-box border rounded cursor-pointer hover-bg-elevated transition-colors text-sm">hover-bg-elevated</div>
+    </div>
+    <div class="demo-row mb-6">
+      <span class="p-3 cursor-pointer hover-text-primary transition-colors font-semibold text-sm">hover-text-primary</span>
+      <span class="p-3 cursor-pointer hover-text-danger transition-colors font-semibold text-sm">hover-text-danger</span>
+      <span class="p-3 cursor-pointer hover-text-success transition-colors font-semibold text-sm">hover-text-success</span>
+      <span class="p-3 cursor-pointer hover-text-muted transition-colors font-semibold text-sm">hover-text-muted</span>
+      <div class="p-3 border rounded cursor-pointer hover-border-primary transition-colors text-sm">hover-border-primary</div>
+      <div class="p-3 border rounded cursor-pointer hover-border-danger transition-colors text-sm">hover-border-danger</div>
+      <div class="p-3 cursor-pointer hover-opacity-50 transition-opacity font-semibold text-sm">hover-opacity-50</div>
+    </div>
+  </div>
+
+  <!-- ===== 5. SEMANTIC STATES ======================================== -->
+  <div id="semantic-states" class="container demo-section">
+    <h2 class="heading-3 mb-6">Semantic States</h2>
+
+    <p class="section-title">Alerts — .alert-{type}</p>
+    <div class="stack-sm mb-6" style="max-width:640px;">
+      <div class="alert-success">✓ <strong>Success:</strong> Operation completed successfully.</div>
+      <div class="alert-danger">✕ <strong>Error:</strong> Something went wrong. Please try again.</div>
+      <div class="alert-warning">⚠ <strong>Warning:</strong> Please review your changes before saving.</div>
+      <div class="alert-info">ℹ <strong>Info:</strong> Your account is in trial mode (14 days left).</div>
+      <div class="alert-caution">⚡ <strong>Caution:</strong> This action cannot be undone.</div>
+      <div class="alert-neutral">◈ <strong>Neutral:</strong> This is a neutral informational message.</div>
+    </div>
+
+    <p class="section-title">Badges (Solid) — .badge-{color}</p>
+    <div class="demo-row mb-4">
+      <span class="badge-primary">Primary</span>
+      <span class="badge-secondary">Secondary</span>
+      <span class="badge-accent">Accent</span>
+      <span class="badge-success">Success</span>
+      <span class="badge-danger">Danger</span>
+      <span class="badge-warning">Warning</span>
+      <span class="badge-info">Info</span>
+      <span class="badge-neutral">Neutral</span>
+    </div>
+
+    <p class="section-title">Badges (Soft) — .badge-soft-{color}</p>
+    <div class="demo-row mb-6">
+      <span class="badge-soft-primary">Draft</span>
+      <span class="badge-soft-secondary">In Review</span>
+      <span class="badge-soft-success">Approved</span>
+      <span class="badge-soft-danger">Rejected</span>
+      <span class="badge-soft-warning">Pending</span>
+      <span class="badge-soft-info">Info</span>
+    </div>
+
+    <p class="section-title">Status Indicators — .status-online / .status-offline / .status-busy / .status-away / .status-dnd</p>
+    <div class="demo-row mb-6">
+      <span><span class="status-online"></span> Online</span>
+      <span><span class="status-offline"></span> Offline</span>
+      <span><span class="status-busy"></span> Busy</span>
+      <span><span class="status-away"></span> Away</span>
+      <span><span class="status-dnd"></span> Do Not Disturb</span>
+    </div>
+
+    <p class="section-title">Highlights — .highlight / .highlight-success / .highlight-danger / .highlight-info</p>
+    <p class="mb-6">
+      Default <span class="highlight">highlight</span>,
+      <span class="highlight-success">success highlight</span>,
+      <span class="highlight-danger">danger highlight</span>,
+      <span class="highlight-info">info highlight</span>.
+    </p>
+
+    <p class="section-title">Gradients — .gradient-primary / .gradient-secondary / .gradient-sunset / .gradient-ocean / .gradient-forest / .gradient-midnight</p>
+    <div class="grid grid-cols-2 sm-grid-cols-3 md-grid-cols-6 gap-4 mb-6">
+      <div class="gradient-primary p-4 rounded-lg text-center font-semibold text-white text-sm">Primary</div>
+      <div class="gradient-secondary p-4 rounded-lg text-center font-semibold text-white text-sm">Secondary</div>
+      <div class="gradient-sunset p-4 rounded-lg text-center font-semibold text-white text-sm">Sunset</div>
+      <div class="gradient-ocean p-4 rounded-lg text-center font-semibold text-white text-sm">Ocean</div>
+      <div class="gradient-forest p-4 rounded-lg text-center font-semibold text-white text-sm">Forest</div>
+      <div class="gradient-midnight p-4 rounded-lg text-center font-semibold text-white text-sm">Midnight</div>
+    </div>
+
+    <p class="section-title">Surface Variants — .surface-raised / .surface-sunken / .surface-interactive</p>
+    <div class="grid grid-cols-1 md-grid-cols-3 gap-4 mb-6">
+      <div class="surface-raised p-4 rounded text-sm">surface-raised — elevated card surface</div>
+      <div class="surface-sunken p-4 rounded text-sm">surface-sunken — inset / recessed content</div>
+      <div class="surface-interactive p-4 rounded cursor-pointer text-sm">surface-interactive — hover me</div>
+    </div>
+
+    <p class="section-title">Dividers — .divider / .divider-strong / .divider-dashed / .divider-vertical</p>
+    <div class="mb-4" style="max-width:480px;">
+      <p class="text-xs text-muted mb-1">.divider</p><hr class="divider" />
+      <p class="text-xs text-muted mb-1 mt-3">.divider-strong</p><hr class="divider-strong" />
+      <p class="text-xs text-muted mb-1 mt-3">.divider-dashed</p><hr class="divider-dashed" />
+      <p class="text-sm text-muted mt-3">Inline: Left <span class="divider-vertical"></span> Middle <span class="divider-vertical"></span> Right</p>
+    </div>
+  </div>
+
+  <!-- ===== 6. SEMANTIC TYPOGRAPHY ==================================== -->
+  <div id="semantic-typography" class="container demo-section">
+    <h2 class="heading-3 mb-6">Semantic Typography</h2>
+
+    <p class="section-title">Display Headings — .display-1 / .display-2 / .display-3</p>
+    <div class="demo-col mb-6">
+      <p class="display-1">Display 1</p>
+      <p class="display-2">Display 2</p>
+      <p class="display-3">Display 3</p>
+    </div>
+
+    <p class="section-title">Content Hierarchy — .overline / .subtitle / .lead / .caption</p>
+    <div class="mb-6" style="max-width:520px;">
+      <span class="overline">Featured Article</span>
+      <p class="heading-3 mb-1">Article Headline Goes Here</p>
+      <p class="subtitle mb-2">A subtitle providing additional context for the heading above</p>
+      <p class="lead">A lead paragraph — slightly larger and lighter weight, ideal for introductions and article summaries.</p>
+      <p class="caption">Caption: Additional context or attribution for this content block.</p>
+    </div>
+
+    <p class="section-title">Inline Semantic — .kbd / .code / .blockquote / .list-check</p>
+    <div class="mb-6" style="max-width:560px;">
+      <p class="mb-3">Press <kbd class="kbd">Ctrl</kbd> + <kbd class="kbd">Shift</kbd> + <kbd class="kbd">P</kbd> to open the command palette.</p>
+      <p class="mb-3">Call <code class="code">streamertail.init()</code> with <code class="code">{ theme: 'dark' }</code> as options.</p>
+      <blockquote class="blockquote mb-4">Design is not just what it looks like and feels like. Design is how it works. — Steve Jobs</blockquote>
+      <ul class="list-check mb-4">
+        <li>Zero side effects on existing styles</li>
+        <li>Framework-agnostic — works with React, Vue, Angular, or plain HTML</li>
+        <li>Full dark mode with CSS custom properties</li>
+        <li>Dual-class system: <code class="code">.st-btn</code> or just <code class="code">.btn</code></li>
+      </ul>
+    </div>
+
+    <p class="section-title">Prose — .prose (formatted long-form content)</p>
+    <article class="prose">
+      <h4>What is Streamertail?</h4>
+      <p>Streamertail is a <strong>lightweight CSS utility library</strong> that works alongside any existing project. It provides semantic classes that make building UIs intuitive without fighting the cascade.</p>
+      <ul>
+        <li>Zero side effects — wrapped in <code>@layer streamertail.base</code></li>
+        <li>Framework-agnostic — works anywhere CSS works</li>
+        <li>Dual-class system — <code>.st-btn</code> or just <code>.btn</code></li>
+      </ul>
+      <blockquote>The best library is the one you forget is there.</blockquote>
+      <p>All styles are <a href="#">opt-in via class names</a>. Nothing changes unless you add a Streamertail class.</p>
+    </article>
+  </div>
+
+  <!-- ===== 7. GRID =================================================== -->
+  <div id="grid" class="container demo-section">
+    <h2 class="heading-3 mb-6">Grid</h2>
+
+    <p class="section-title">Fixed Column Grids — .grid-cols-1 … .grid-cols-12</p>
+    <div class="demo-col mb-6">
+      <div class="grid grid-cols-2 gap-2">
+        <div class="p-3 bg-info-light text-center rounded text-sm">1</div><div class="p-3 bg-info-light text-center rounded text-sm">2</div>
+      </div>
+      <div class="grid grid-cols-3 gap-2">
+        <div class="p-3 bg-success-light text-center rounded text-sm">1</div><div class="p-3 bg-success-light text-center rounded text-sm">2</div><div class="p-3 bg-success-light text-center rounded text-sm">3</div>
+      </div>
+      <div class="grid grid-cols-4 gap-2">
+        <div class="p-3 bg-warning-light text-center rounded text-sm">1</div><div class="p-3 bg-warning-light text-center rounded text-sm">2</div><div class="p-3 bg-warning-light text-center rounded text-sm">3</div><div class="p-3 bg-warning-light text-center rounded text-sm">4</div>
+      </div>
+      <div class="grid grid-cols-6 gap-2">
+        <div class="p-3 bg-caution-light text-center rounded text-sm col-span-2">col-span-2</div>
+        <div class="p-3 bg-caution-light text-center rounded text-sm col-span-4">col-span-4</div>
+      </div>
+      <div class="grid grid-cols-12 gap-2">
+        <div class="p-3 bg-danger-light text-center rounded text-sm col-span-3">span 3</div>
+        <div class="p-3 bg-danger-light text-center rounded text-sm col-span-6">span 6</div>
+        <div class="p-3 bg-danger-light text-center rounded text-sm col-span-3">span 3</div>
+      </div>
+    </div>
+
+    <p class="section-title">Responsive — .grid-cols-1 / .sm-grid-cols-2 / .md-grid-cols-3 / .lg-grid-cols-4</p>
+    <div class="grid grid-cols-1 sm-grid-cols-2 md-grid-cols-3 lg-grid-cols-4 gap-4 mb-6">
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">1</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">2</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">3</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">4</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">5</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">6</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">7</div>
+      <div class="p-4 bg-surface shadow-sm text-center rounded text-sm">8</div>
+    </div>
+
+    <p class="section-title">Gap — .gap-1 / .gap-2 / .gap-4 / .gap-6 / .gap-x-4 / .gap-y-4</p>
+    <div class="demo-col mb-4">
+      <div class="grid grid-cols-4 gap-1"><div class="p-2 bg-info-light rounded text-center text-sm">gap-1</div><div class="p-2 bg-info-light rounded text-center text-sm">A</div><div class="p-2 bg-info-light rounded text-center text-sm">B</div><div class="p-2 bg-info-light rounded text-center text-sm">C</div></div>
+      <div class="grid grid-cols-4 gap-4"><div class="p-2 bg-info-light rounded text-center text-sm">gap-4</div><div class="p-2 bg-info-light rounded text-center text-sm">A</div><div class="p-2 bg-info-light rounded text-center text-sm">B</div><div class="p-2 bg-info-light rounded text-center text-sm">C</div></div>
+      <div class="grid grid-cols-4 gap-8"><div class="p-2 bg-info-light rounded text-center text-sm">gap-8</div><div class="p-2 bg-info-light rounded text-center text-sm">A</div><div class="p-2 bg-info-light rounded text-center text-sm">B</div><div class="p-2 bg-info-light rounded text-center text-sm">C</div></div>
+    </div>
+  </div>
+
+  <!-- ===== 8. FLEXBOX ================================================ -->
+  <div id="flexbox" class="container demo-section">
+    <h2 class="heading-3 mb-6">Flexbox</h2>
+
+    <p class="section-title">Justify Content — .justify-start / .justify-center / .justify-between / .justify-end / .justify-around / .justify-evenly</p>
+    <div class="demo-col mb-6">
+      <div class="flex justify-start gap-2 border p-2 rounded"><div class="badge-primary">A</div><div class="badge-secondary">B</div><div class="badge-info">C</div><span class="text-xs text-muted self-center ml-2">justify-start</span></div>
+      <div class="flex justify-center gap-2 border p-2 rounded"><div class="badge-primary">A</div><div class="badge-secondary">B</div><div class="badge-info">C</div><span class="text-xs text-muted self-center ml-2">justify-center</span></div>
+      <div class="flex justify-between border p-2 rounded"><div class="badge-primary">A</div><span class="text-xs text-muted self-center">justify-between</span><div class="badge-secondary">B</div><div class="badge-info">C</div></div>
+      <div class="flex justify-end gap-2 border p-2 rounded"><span class="text-xs text-muted self-center">justify-end</span><div class="badge-primary">A</div><div class="badge-secondary">B</div><div class="badge-info">C</div></div>
+    </div>
+
+    <p class="section-title">Align Items — .items-start / .items-center / .items-end / .items-stretch / .items-baseline</p>
+    <div class="demo-row mb-6">
+      <div class="flex items-start gap-2 border p-2 rounded" style="height:60px;"><div class="badge-primary">A</div><div class="badge-secondary p-3">B</div><span class="text-xs text-muted">items-start</span></div>
+      <div class="flex items-center gap-2 border p-2 rounded" style="height:60px;"><div class="badge-primary">A</div><div class="badge-secondary p-3">B</div><span class="text-xs text-muted">items-center</span></div>
+      <div class="flex items-end gap-2 border p-2 rounded" style="height:60px;"><div class="badge-primary">A</div><div class="badge-secondary p-3">B</div><span class="text-xs text-muted">items-end</span></div>
+    </div>
+
+    <p class="section-title">Align Self — .self-start / .self-center / .self-end</p>
+    <div class="flex border rounded p-2 gap-2 mb-6" style="height:80px;">
+      <div class="badge-primary self-start">self-start</div>
+      <div class="badge-success self-center">self-center</div>
+      <div class="badge-danger self-end">self-end</div>
+    </div>
+
+    <p class="section-title">Flex Direction — .flex-row / .flex-col / .flex-row-reverse / .flex-col-reverse</p>
+    <div class="demo-row mb-6">
+      <div class="flex flex-row gap-2 border p-2 rounded"><div class="badge-primary">1</div><div class="badge-secondary">2</div><div class="badge-info">3</div><span class="text-xs text-muted self-center ml-1">flex-row</span></div>
+      <div class="flex flex-col gap-1 border p-2 rounded"><div class="badge-primary">1</div><div class="badge-secondary">2</div><div class="badge-info">3</div><span class="text-xs text-muted">flex-col</span></div>
+      <div class="flex flex-row-reverse gap-2 border p-2 rounded"><span class="text-xs text-muted self-center mr-1">row-reverse</span><div class="badge-primary">1</div><div class="badge-secondary">2</div><div class="badge-info">3</div></div>
+    </div>
+
+    <p class="section-title">Grow / Shrink / Order — .grow / .shrink-0 / .flex-1 / .flex-none / .order-{n}</p>
+    <div class="flex gap-2 border p-2 rounded mb-4">
+      <div class="bg-primary text-white p-2 rounded text-sm">flex-none</div>
+      <div class="bg-info text-white p-2 rounded grow text-sm">grow → fills space</div>
+      <div class="bg-secondary text-white p-2 rounded shrink-0 text-sm">shrink-0</div>
+    </div>
+    <div class="flex gap-2 border p-2 rounded mb-6">
+      <div class="badge-danger order-3">A (order-3)</div>
+      <div class="badge-success order-1">B (order-1)</div>
+      <div class="badge-primary order-2">C (order-2)</div>
+    </div>
+
+    <p class="section-title">Flex Wrap — .flex-wrap / .flex-nowrap</p>
+    <div class="flex flex-wrap gap-2 border p-2 rounded mb-4" style="max-width:280px;">
+      <div class="badge-primary">Item 1</div><div class="badge-secondary">Item 2</div><div class="badge-success">Item 3</div>
+      <div class="badge-danger">Item 4</div><div class="badge-info">Item 5</div><div class="badge-warning">Item 6</div>
+      <span class="text-xs text-muted self-center">flex-wrap</span>
+    </div>
+  </div>
+
+  <!-- ===== 9. SPACING ================================================ -->
+  <div id="spacing" class="container demo-section">
+    <h2 class="heading-3 mb-6">Spacing</h2>
+
+    <p class="section-title">Padding — .p-{n} / .px-{n} / .py-{n} / .pt-{n} / .pb-{n} / .pl-{n} / .pr-{n}</p>
+    <div class="demo-row mb-4">
+      <div class="bg-info-light rounded p-1 text-center text-xs">p-1</div>
+      <div class="bg-info-light rounded p-2 text-center text-xs">p-2</div>
+      <div class="bg-info-light rounded p-3 text-center text-xs">p-3</div>
+      <div class="bg-info-light rounded p-4 text-center text-xs">p-4</div>
+      <div class="bg-info-light rounded p-5 text-center text-xs">p-5</div>
+      <div class="bg-info-light rounded p-6 text-center text-xs">p-6</div>
+      <div class="bg-info-light rounded p-8 text-center text-xs">p-8</div>
+    </div>
+    <div class="demo-row mb-6">
+      <div class="bg-success-light rounded px-8 py-1 text-xs">px-8 py-1</div>
+      <div class="bg-success-light rounded pt-6 pb-1 px-3 text-xs">pt-6 pb-1 px-3</div>
+      <div class="bg-success-light rounded pl-10 pr-2 py-2 text-xs">pl-10 pr-2 py-2</div>
+    </div>
+
+    <p class="section-title">Margin — .m-{n} / .mx-auto / .ml-auto / .mr-auto</p>
+    <div class="border rounded p-2 mb-4">
+      <div class="bg-primary text-white p-2 rounded mx-auto text-center text-sm" style="width:200px;">mx-auto (centered)</div>
+    </div>
+    <div class="flex gap-1 mb-6">
+      <div class="bg-warning-light rounded p-2 mt-4 text-xs">mt-4</div>
+      <div class="bg-warning-light rounded p-2 mb-4 text-xs">mb-4</div>
+      <div class="bg-warning-light rounded p-2 ml-8 text-xs">ml-8</div>
+      <div class="bg-warning-light rounded p-2 mr-auto text-xs">mr-auto</div>
+    </div>
+
+    <p class="section-title">Responsive Spacing — .{bp}-p-{n} / .{bp}-m-{n}</p>
+    <p class="text-muted text-sm">Example: <code class="code">.md-p-8</code> applies padding: 2rem only at ≥768px breakpoint.</p>
+    <div class="p-2 md-p-8 bg-caution-light rounded mt-2 mb-4 text-sm">This box has <code class="code">.p-2 .md-p-8</code> — resize to see change</div>
+  </div>
+
+  <!-- ===== 10. DISPLAY & POSITION ==================================== -->
+  <div id="display" class="container demo-section">
+    <h2 class="heading-3 mb-6">Display &amp; Position</h2>
+
+    <p class="section-title">Display — .block / .inline-block / .inline / .hidden / .invisible</p>
+    <div class="demo-row mb-6">
+      <div class="block bg-info-light rounded p-2 text-sm">.block</div>
+      <span class="inline-block bg-success-light rounded p-2 text-sm">.inline-block</span>
+      <span class="inline bg-warning-light rounded p-1 text-sm">.inline</span>
+      <span class="invisible bg-danger-light rounded p-2 text-sm">.invisible (space kept)</span>
+      <span class="bg-neutral-light rounded p-2 text-sm">(.visible — reset)</span>
+    </div>
+
+    <p class="section-title">Overflow — .overflow-hidden / .overflow-auto / .overflow-x-auto / .overflow-y-auto</p>
+    <div class="demo-row mb-6">
+      <div class="overflow-hidden bg-surface border rounded p-2 text-xs" style="width:110px;height:48px;">overflow-hidden clipping long text content here</div>
+      <div class="overflow-auto bg-surface border rounded p-2 text-xs" style="width:110px;height:48px;">overflow-auto scrollable long text content here that overflows</div>
+      <div class="overflow-x-auto bg-surface border rounded p-2 text-xs" style="width:110px;"><span style="white-space:nowrap;">overflow-x-auto — horizontal scroll only for this wide content</span></div>
+    </div>
+
+    <p class="section-title">Position — .relative / .absolute / .sticky / .fixed</p>
+    <div class="relative border rounded p-4 mb-4" style="height:80px;">
+      <span class="text-xs text-muted">parent: .relative</span>
+      <div class="absolute bg-primary text-white text-xs rounded p-1" style="top:8px;right:8px;">.absolute (top-right)</div>
+    </div>
+    <p class="text-xs text-muted mb-6">The nav bar uses <code class="code">.sticky top-0</code> — scroll to see it stick.</p>
+
+    <p class="section-title">Responsive Display — .sm-hidden / .md-block / .lg-flex</p>
+    <div class="demo-row mb-4">
+      <div class="bg-info-light p-3 rounded text-xs sm-hidden">sm-hidden (hidden ≥576px)</div>
+      <div class="bg-success-light p-3 rounded text-xs hidden md-block">md-block (shows ≥768px)</div>
+      <div class="bg-warning-light p-3 rounded text-xs hidden lg-flex items-center">lg-flex (shows ≥992px)</div>
+    </div>
+  </div>
+
+  <!-- ===== 11. BORDERS & RADIUS ====================================== -->
+  <div id="borders" class="container demo-section">
+    <h2 class="heading-3 mb-6">Borders &amp; Radius</h2>
+
+    <p class="section-title">Border Width — .border / .border-0 / .border-2 / .border-4 / .border-8</p>
+    <div class="demo-row mb-4">
+      <div class="p-3 text-sm border">border</div>
+      <div class="p-3 text-sm border-2">border-2</div>
+      <div class="p-3 text-sm border-4">border-4</div>
+      <div class="p-3 text-sm border-8">border-8</div>
+    </div>
+
+    <p class="section-title">Border Sides — .border-t / .border-r / .border-b / .border-l / .border-x / .border-y</p>
+    <div class="demo-row mb-4">
+      <div class="p-3 text-sm border-t border-primary">border-t</div>
+      <div class="p-3 text-sm border-r border-primary">border-r</div>
+      <div class="p-3 text-sm border-b border-primary">border-b</div>
+      <div class="p-3 text-sm border-l border-primary">border-l</div>
+      <div class="p-3 text-sm border-x border-primary">border-x</div>
+      <div class="p-3 text-sm border-y border-primary">border-y</div>
+    </div>
+
+    <p class="section-title">Border Style — .border-solid / .border-dashed / .border-dotted</p>
+    <div class="demo-row mb-4">
+      <div class="p-3 text-sm border-2 border-solid">border-solid</div>
+      <div class="p-3 text-sm border-2 border-dashed">border-dashed</div>
+      <div class="p-3 text-sm border-2 border-dotted">border-dotted</div>
+    </div>
+
+    <p class="section-title">Border Radius — .rounded-none / .rounded-sm / .rounded / .rounded-md / .rounded-lg / .rounded-xl / .rounded-full</p>
+    <div class="demo-row mb-4">
+      <div class="demo-box bg-primary text-white border rounded-none text-sm">none</div>
+      <div class="demo-box bg-primary text-white border rounded-sm text-sm">sm</div>
+      <div class="demo-box bg-primary text-white border rounded text-sm">default</div>
+      <div class="demo-box bg-primary text-white border rounded-md text-sm">md</div>
+      <div class="demo-box bg-primary text-white border rounded-lg text-sm">lg</div>
+      <div class="demo-box bg-primary text-white border rounded-xl text-sm">xl</div>
+      <div class="demo-box bg-primary text-white border rounded-full text-sm">full</div>
+    </div>
+
+    <p class="section-title">Per-side Radius — .rounded-t / .rounded-b / .rounded-l / .rounded-r / .rounded-tl / .rounded-tr / .rounded-bl / .rounded-br</p>
+    <div class="demo-row mb-4">
+      <div class="demo-box bg-secondary text-white border rounded-t text-sm">t</div>
+      <div class="demo-box bg-secondary text-white border rounded-b text-sm">b</div>
+      <div class="demo-box bg-secondary text-white border rounded-l text-sm">l</div>
+      <div class="demo-box bg-secondary text-white border rounded-r text-sm">r</div>
+      <div class="demo-box bg-secondary text-white border rounded-tl text-sm">tl</div>
+      <div class="demo-box bg-secondary text-white border rounded-tr text-sm">tr</div>
+      <div class="demo-box bg-secondary text-white border rounded-bl text-sm">bl</div>
+      <div class="demo-box bg-secondary text-white border rounded-br text-sm">br</div>
+    </div>
+  </div>
+
+  <!-- ===== 12. SIZING ================================================ -->
+  <div id="sizing" class="container demo-section">
+    <h2 class="heading-3 mb-6">Sizing</h2>
+
+    <p class="section-title">Width Fractions — .w-1/2 / .w-1/3 / .w-2/3 / .w-1/4 / .w-3/4 / .w-full / .w-fit</p>
+    <div class="demo-col mb-6">
+      <div class="bg-info-light rounded p-2 w-full text-xs text-center">w-full (100%)</div>
+      <div class="bg-info-light rounded p-2 text-xs text-center" style="width:75%">w-3/4 (75%)</div>
+      <div class="bg-info-light rounded p-2 text-xs text-center" style="width:66.667%">w-2/3 (66.7%)</div>
+      <div class="bg-info-light rounded p-2 text-xs text-center" style="width:50%">w-1/2 (50%)</div>
+      <div class="bg-info-light rounded p-2 text-xs text-center" style="width:33.333%">w-1/3 (33.3%)</div>
+      <div class="bg-info-light rounded p-2 text-xs text-center" style="width:25%">w-1/4 (25%)</div>
+    </div>
+
+    <p class="section-title">Max Width — .max-w-xs / .max-w-sm / .max-w-md / .max-w-lg / .max-w-xl … .max-w-7xl / .max-w-prose</p>
+    <div class="demo-col mb-6">
+      <div class="bg-success-light rounded p-2 max-w-xs text-xs">max-w-xs (20rem)</div>
+      <div class="bg-success-light rounded p-2 max-w-sm text-xs">max-w-sm (24rem)</div>
+      <div class="bg-success-light rounded p-2 max-w-md text-xs">max-w-md (28rem)</div>
+      <div class="bg-success-light rounded p-2 max-w-lg text-xs">max-w-lg (32rem)</div>
+      <div class="bg-success-light rounded p-2 max-w-prose text-xs">max-w-prose (65ch) — ideal for readable text</div>
+    </div>
+
+    <p class="section-title">Aspect Ratio — .aspect-square / .aspect-video / .aspect-4/3</p>
+    <div class="demo-row mb-6">
+      <div class="bg-primary aspect-square rounded flex items-center justify-center text-white text-xs" style="width:80px;">1:1</div>
+      <div class="bg-secondary aspect-video rounded flex items-center justify-center text-white text-xs" style="width:160px;">16:9</div>
+      <div class="bg-info rounded flex items-center justify-center text-white text-xs" style="width:120px;aspect-ratio:4/3;">4:3</div>
+    </div>
+
+    <p class="section-title">Object Fit — .object-cover / .object-contain / .object-fill</p>
+    <div class="demo-row mb-4">
+      <div style="width:100px;height:70px;overflow:hidden;" class="relative">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%232563eb' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'%3E300x200%3C/text%3E%3C/svg%3E" class="w-full h-full object-cover rounded" alt="cover" />
+        <span class="absolute" style="bottom:2px;left:2px;font-size:9px;background:rgba(0,0,0,.5);color:#fff;padding:1px 4px;border-radius:3px;">object-cover</span>
+      </div>
+      <div style="width:100px;height:70px;overflow:hidden;" class="relative">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200'%3E%3Crect fill='%232563eb' width='300' height='200'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'%3E300x200%3C/text%3E%3C/svg%3E" class="w-full h-full object-contain border rounded" alt="contain" />
+        <span class="absolute" style="bottom:2px;left:2px;font-size:9px;background:rgba(0,0,0,.5);color:#fff;padding:1px 4px;border-radius:3px;">object-contain</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 13. DIVIDE ================================================ -->
+  <div id="divide" class="container demo-section">
+    <h2 class="heading-3 mb-6">Divide</h2>
+
+    <p class="section-title">Divide Y — .divide-y / .divide-y-2 (horizontal separator between stacked children)</p>
+    <div class="divide-y rounded border mb-6" style="max-width:300px;">
+      <div class="p-3 text-sm">Item One</div>
+      <div class="p-3 text-sm">Item Two</div>
+      <div class="p-3 text-sm">Item Three</div>
+    </div>
+
+    <p class="section-title">Divide X — .divide-x / .divide-x-2 (vertical separator between inline children)</p>
+    <div class="flex divide-x rounded border mb-6" style="max-width:320px;">
+      <div class="p-3 text-sm grow text-center">Column A</div>
+      <div class="p-3 text-sm grow text-center">Column B</div>
+      <div class="p-3 text-sm grow text-center">Column C</div>
+    </div>
+
+    <p class="section-title">Divide Colors — .divide-primary / .divide-gray</p>
+    <div class="divide-y divide-primary mb-6" style="max-width:300px;">
+      <div class="p-3 text-sm">divide-primary — Section 1</div>
+      <div class="p-3 text-sm">divide-primary — Section 2</div>
+      <div class="p-3 text-sm">divide-primary — Section 3</div>
+    </div>
+    <div class="divide-y-2 divide-gray mb-4" style="max-width:300px;">
+      <div class="p-3 text-sm">divide-gray-2 — Row A</div>
+      <div class="p-3 text-sm">divide-gray-2 — Row B</div>
+    </div>
+  </div>
+
+  <!-- ===== 14. UTILITIES ============================================= -->
+  <div id="utilities" class="container demo-section">
+    <h2 class="heading-3 mb-6">Utilities</h2>
+
+    <p class="section-title">Opacity — .opacity-0 / .opacity-25 / .opacity-50 / .opacity-75 / .opacity-100</p>
+    <div class="demo-row mb-6">
+      <div class="demo-box bg-primary text-white rounded opacity-100 text-sm">100%</div>
+      <div class="demo-box bg-primary text-white rounded opacity-75 text-sm">75%</div>
+      <div class="demo-box bg-primary text-white rounded opacity-50 text-sm">50%</div>
+      <div class="demo-box bg-primary text-white rounded opacity-25 text-sm">25%</div>
+      <div class="demo-box bg-primary text-white rounded opacity-10 text-sm">10%</div>
+      <div class="demo-box bg-primary text-white rounded opacity-0 text-sm">0%</div>
+    </div>
+
+    <p class="section-title">Cursor — .cursor-pointer / .cursor-not-allowed / .cursor-grab / .cursor-crosshair / .cursor-zoom-in / .cursor-text / .cursor-wait / .cursor-move</p>
+    <div class="demo-row mb-6 flex-wrap">
+      <div class="demo-box bg-surface border rounded cursor-pointer text-xs">cursor-pointer</div>
+      <div class="demo-box bg-surface border rounded cursor-not-allowed opacity-50 text-xs">cursor-not-allowed</div>
+      <div class="demo-box bg-surface border rounded cursor-grab text-xs">cursor-grab</div>
+      <div class="demo-box bg-surface border rounded cursor-crosshair text-xs">cursor-crosshair</div>
+      <div class="demo-box bg-surface border rounded cursor-zoom-in text-xs">cursor-zoom-in</div>
+      <div class="demo-box bg-surface border rounded cursor-text text-xs">cursor-text</div>
+      <div class="demo-box bg-surface border rounded cursor-move text-xs">cursor-move</div>
+    </div>
+
+    <p class="section-title">User Select — .select-none / .select-text / .select-all</p>
+    <div class="demo-row mb-6">
+      <div class="p-3 border rounded select-none bg-danger-light text-xs">select-none (try to select this)</div>
+      <div class="p-3 border rounded select-text bg-success-light text-xs">select-text (normal selection)</div>
+      <div class="p-3 border rounded select-all bg-info-light text-xs">select-all (click = select all)</div>
+    </div>
+
+    <p class="section-title">Pointer Events — .pointer-events-none / .pointer-events-auto</p>
+    <div class="demo-row mb-6">
+      <div class="relative inline-block">
+        <button class="btn btn-danger">Blocked by overlay</button>
+        <div class="absolute inset-0 pointer-events-none bg-neutral-light opacity-80 rounded flex items-center justify-center text-xs font-bold">pointer-events-none</div>
+      </div>
+    </div>
+
+    <p class="section-title">Z-Index — .z-0 / .z-10 / .z-20 / .z-50 / .z-dropdown / .z-modal / .z-tooltip</p>
+    <div class="relative mb-6" style="height:60px;">
+      <div class="absolute bg-danger text-white p-2 rounded text-xs z-20" style="top:0;left:0;">z-20</div>
+      <div class="absolute bg-warning text-white p-2 rounded text-xs z-10" style="top:10px;left:30px;">z-10</div>
+      <div class="absolute bg-success text-white p-2 rounded text-xs z-0" style="top:20px;left:60px;">z-0</div>
+    </div>
+  </div>
+
+  <!-- ===== 15. SEMANTIC LAYOUTS ====================================== -->
+  <div id="semantic-layouts" class="container demo-section">
+    <h2 class="heading-3 mb-6">Semantic Layouts</h2>
+
+    <p class="section-title">.stack — vertical flow with consistent gap</p>
+    <div class="stack bg-surface border rounded p-4 mb-6" style="max-width:340px;">
+      <div class="p-3 bg-info-light rounded text-sm">Stack Item 1</div>
+      <div class="p-3 bg-info-light rounded text-sm">Stack Item 2</div>
+      <div class="p-3 bg-info-light rounded text-sm">Stack Item 3</div>
+    </div>
+
+    <p class="section-title">.stack-sm — tighter vertical flow</p>
+    <div class="stack-sm mb-6" style="max-width:480px;">
+      <div class="alert-success">Operation completed successfully.</div>
+      <div class="alert-warning">Please review your changes.</div>
+      <div class="alert-danger">An error occurred.</div>
+    </div>
+
+    <p class="section-title">.cluster — horizontal wrapping group</p>
+    <div class="cluster border rounded p-4 mb-6">
+      <span class="badge-primary">HTML5</span>
+      <span class="badge-secondary">CSS3</span>
+      <span class="badge-success">JavaScript</span>
+      <span class="badge-info">TypeScript</span>
+      <span class="badge-warning">SCSS/Sass</span>
+      <span class="badge-danger">Git</span>
+      <span class="badge-neutral">Node.js</span>
+      <span class="badge-accent">Vite</span>
+    </div>
+
+    <p class="section-title">.auto-grid — responsive grid, no breakpoints needed</p>
+    <div class="auto-grid mb-6">
+      <div class="surface-raised p-4 rounded text-center text-sm">Auto Card 1</div>
+      <div class="surface-raised p-4 rounded text-center text-sm">Auto Card 2</div>
+      <div class="surface-raised p-4 rounded text-center text-sm">Auto Card 3</div>
+      <div class="surface-raised p-4 rounded text-center text-sm">Auto Card 4</div>
+      <div class="surface-raised p-4 rounded text-center text-sm">Auto Card 5</div>
+    </div>
+
+    <p class="section-title">.switcher — horizontal unless too narrow, then vertical</p>
+    <div class="switcher mb-6">
+      <div class="p-4 bg-surface border rounded text-sm">Panel A</div>
+      <div class="p-4 bg-surface border rounded text-sm">Panel B</div>
+      <div class="p-4 bg-surface border rounded text-sm">Panel C</div>
+    </div>
+
+    <p class="section-title">.with-sidebar — sidebar (fixed) + main content (fills remaining)</p>
+    <div class="with-sidebar mb-6">
+      <aside class="p-4 bg-surface border rounded text-sm font-semibold">Sidebar (fixed width)</aside>
+      <main class="p-4 bg-elevated border rounded shadow-sm text-sm">Main content fills remaining space. Resize window to see sidebar stay fixed while main grows.</main>
+    </div>
+
+    <p class="section-title">.pancake — header / scrollable content / sticky footer</p>
+    <div class="pancake rounded border overflow-hidden mb-6" style="height:200px;">
+      <header class="p-3 bg-primary text-white text-sm font-semibold">Pancake Header</header>
+      <main class="p-4 bg-surface text-sm overflow-y-auto">Main content fills remaining space. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</main>
+      <footer class="p-3 bg-surface border-t text-sm text-muted text-center">Pancake Footer — always visible</footer>
+    </div>
+
+    <p class="section-title">.cover — vertically centered content with min-height</p>
+    <div class="cover gradient-primary rounded mb-6 text-white" style="min-height:160px;">
+      <div class="text-center p-6">
+        <h3 class="heading-4 mb-1">Cover Layout</h3>
+        <p class="text-sm opacity-80">Content is centered vertically and horizontally</p>
+      </div>
+    </div>
+
+    <p class="section-title">.reel — horizontal scroll row</p>
+    <div class="reel mb-6">
+      <div class="p-4 bg-primary text-white rounded text-sm" style="min-width:200px;">Slide 1</div>
+      <div class="p-4 bg-secondary text-white rounded text-sm" style="min-width:200px;">Slide 2</div>
+      <div class="p-4 bg-accent rounded text-sm" style="min-width:200px;">Slide 3</div>
+      <div class="p-4 bg-success text-white rounded text-sm" style="min-width:200px;">Slide 4</div>
+      <div class="p-4 bg-info text-white rounded text-sm" style="min-width:200px;">Slide 5</div>
+      <div class="p-4 bg-danger text-white rounded text-sm" style="min-width:200px;">Slide 6</div>
+    </div>
+  </div>
+
+  <!-- ===== 16. ANIMATIONS ============================================ -->
+  <div id="animations" class="container demo-section">
+    <h2 class="heading-3 mb-6">Animations</h2>
+
+    <p class="section-title">Keyframe Animations — .animate-{name}</p>
+    <div class="demo-row mb-6 flex-wrap">
+      <div class="p-4 bg-primary text-white rounded animate-fade-in text-sm">animate-fade-in</div>
+      <div class="p-4 bg-secondary text-white rounded animate-fade-out text-sm">animate-fade-out</div>
+      <div class="p-4 bg-info text-white rounded animate-slide-up text-sm">animate-slide-up</div>
+      <div class="p-4 bg-success text-white rounded animate-slide-down text-sm">animate-slide-down</div>
+      <div class="p-4 bg-accent rounded animate-scale-in text-sm">animate-scale-in</div>
+      <div class="p-4 bg-warning text-white rounded animate-pulse text-sm">animate-pulse</div>
+      <div class="p-4 bg-danger text-white rounded animate-bounce text-sm">animate-bounce</div>
+      <div class="bg-neutral text-white rounded animate-spin flex items-center justify-center text-sm" style="width:64px;height:64px;">spin</div>
+    </div>
+
+    <p class="section-title">Transition Utilities — .transition-all / .transition-colors / .transition-transform / .transition-opacity / .transition-shadow</p>
+    <div class="demo-row mb-6 flex-wrap">
+      <button class="btn btn-primary transition-all hover-lift">transition-all + hover-lift</button>
+      <button class="btn btn-secondary transition-colors hover-bg-danger hover-text-white">transition-colors</button>
+      <button class="btn btn-outline transition-transform hover-grow">transition-transform + hover-grow</button>
+      <button class="btn btn-ghost transition-opacity hover-opacity-50">transition-opacity</button>
+    </div>
+
+    <p class="section-title">Hover Transforms — .hover-lift / .hover-grow / .hover-shrink</p>
+    <div class="demo-row mb-6">
+      <div class="p-4 bg-primary text-white rounded cursor-pointer transition-transform hover-lift shadow text-sm">hover-lift ↑</div>
+      <div class="p-4 bg-secondary text-white rounded cursor-pointer transition-transform hover-grow shadow text-sm">hover-grow ⊕</div>
+      <div class="p-4 bg-success text-white rounded cursor-pointer transition-transform hover-shrink shadow text-sm">hover-shrink ⊖</div>
+    </div>
+
+    <p class="section-title">Reduced Motion</p>
+    <div class="alert-info text-sm">
+      When a user has "Reduce Motion" enabled in their OS, Streamertail automatically disables all animations and transitions via <code class="code">@media (prefers-reduced-motion: reduce)</code>. No extra work needed.
+    </div>
+  </div>
+
+  <!-- ===== 17. EASTER EGGS =========================================== -->
+  <div id="easter-eggs" class="container demo-section">
+    <h2 class="heading-3 mb-2">Easter Eggs <span class="text-muted font-normal text-base ml-2">🥚 Fun effects — use sparingly!</span></h2>
+    <p class="text-muted text-sm mb-6">All animations respect <code class="code">prefers-reduced-motion</code>.</p>
+
+    <p class="section-title">.party — animated rainbow gradient text</p>
+    <p class="party text-4xl font-bold mb-6">🎉 This text is having a party!</p>
+
+    <p class="section-title">.neon / .neon-green / .neon-pink — glowing neon text</p>
+    <div class="bg-neutral p-6 rounded mb-6 flex flex-wrap gap-4">
+      <span class="neon text-2xl font-bold">neon blue</span>
+      <span class="neon-green text-2xl font-bold">neon green</span>
+      <span class="neon-pink text-2xl font-bold">neon pink</span>
+    </div>
+
+    <p class="section-title">.retro — terminal / CRT aesthetic</p>
+    <div class="retro mb-6" style="max-width:400px;">
+      &gt; STREAMERTAIL v0.4.0 LOADED<br>
+      &gt; FEATURES: 300+<br>
+      &gt; STATUS: READY_<br>
+    </div>
+
+    <p class="section-title">.glass / .glass-dark — glassmorphism</p>
+    <div class="gradient-primary p-8 rounded-lg mb-6 flex flex-wrap gap-4">
+      <div class="glass p-4 rounded-lg text-white text-sm">.glass — frosted glass</div>
+      <div class="glass-dark p-4 rounded-lg text-white text-sm">.glass-dark — dark glass</div>
+    </div>
+
+    <p class="section-title">.float — gentle floating up/down loop</p>
+    <div class="demo-row mb-6">
+      <div class="float p-4 bg-primary text-white rounded shadow-lg text-sm">floating 🚀</div>
+    </div>
+
+    <p class="section-title">.heartbeat — heartbeat pulse</p>
+    <div class="demo-row mb-6">
+      <span class="heartbeat text-4xl">❤️</span>
+      <div class="heartbeat p-4 bg-danger text-white rounded text-sm">heartbeat</div>
+    </div>
+
+    <p class="section-title">.morph — morphing border-radius animation</p>
+    <div class="demo-row mb-6">
+      <div class="morph gradient-primary text-white font-bold flex items-center justify-center text-sm" style="width:120px;height:120px;">morph</div>
+    </div>
+
+    <p class="section-title">.shake / .hover-shake</p>
+    <div class="demo-row mb-6">
+      <button class="btn btn-danger shake">shake (error state)</button>
+      <button class="btn btn-warning hover-shake transition-all">hover to shake</button>
+    </div>
+
+    <p class="section-title">.wiggle / .hover-wiggle</p>
+    <div class="demo-row mb-6">
+      <div class="wiggle p-4 bg-accent rounded font-bold text-sm">wiggle 👋</div>
+      <button class="btn btn-accent hover-wiggle">hover to wiggle</button>
+    </div>
+
+    <p class="section-title">.tilt / .tilt-reverse — 3D perspective tilt on hover</p>
+    <div class="demo-row mb-6">
+      <div class="tilt p-6 bg-primary text-white rounded-lg shadow-lg cursor-pointer text-sm">hover to tilt →</div>
+      <div class="tilt-reverse p-6 bg-secondary text-white rounded-lg shadow-lg cursor-pointer text-sm">hover to tilt ←</div>
+    </div>
+
+    <p class="section-title">.typewriter — typing cursor blink</p>
+    <p class="typewriter text-xl font-mono mb-6">Building great UIs with Streamertail</p>
+
+    <p class="section-title">.glitch — glitch distortion effect</p>
+    <div class="demo-row mb-6">
+      <p class="glitch text-2xl font-bold text-primary">glitch effect</p>
+    </div>
+
+    <p class="section-title">.zoom-wobble — subtle zoom + rotation loop</p>
+    <div class="demo-row mb-6">
+      <div class="zoom-wobble p-4 bg-info text-white rounded font-bold text-sm">zoom-wobble</div>
+    </div>
+
+    <p class="section-title">.gradient-text / .gradient-text-warm / .gradient-text-cool</p>
+    <div class="demo-col mb-6">
+      <p class="gradient-text text-3xl font-bold">gradient-text (blue → teal)</p>
+      <p class="gradient-text-warm text-3xl font-bold">gradient-text-warm (amber → red)</p>
+      <p class="gradient-text-cool text-3xl font-bold">gradient-text-cool (cyan → sky)</p>
+    </div>
+
+    <p class="section-title">.paper — notebook ruled paper effect</p>
+    <div class="paper mb-6" style="max-width:400px;">
+      This div uses the .paper class.<br>
+      Each line aligns to the ruled paper.<br>
+      Great for note-taking UIs!
+    </div>
+
+    <p class="section-title">[data-streamertail="credits"] — auto badge via CSS ::after</p>
+    <p class="mb-6">
+      <span data-streamertail="credits" class="font-semibold">Inspect or hover this element</span>
+      — the ⚡ Made with Streamertail badge appears automatically!
+    </p>
+  </div>
+
+  <!-- ===== 18. ACCESSIBILITY ========================================= -->
+  <div id="accessibility" class="container demo-section">
+    <h2 class="heading-3 mb-6">Accessibility</h2>
+
+    <p class="section-title">.skip-link — visible on focus for keyboard navigation (Tab to reach it)</p>
+    <div class="mb-4 relative">
+      <a href="#typography" class="skip-link">Skip to main content</a>
+      <p class="text-muted text-sm">Tab to the link above — it becomes visible when focused.</p>
+    </div>
+
+    <p class="section-title">.sr-only — visually hidden, accessible to screen readers</p>
+    <div class="demo-row mb-6">
+      <button class="btn btn-primary">
+        <span class="sr-only">Close dialog</span>
+        <span aria-hidden="true">✕</span>
+      </button>
+      <p class="text-muted text-sm">The ✕ button has a <code class="code">.sr-only</code> label "Close dialog" — only screen readers see it.</p>
+    </div>
+
+    <p class="section-title">.not-sr-only — restore visibility after .sr-only was applied</p>
+    <div class="mb-6 text-sm text-muted">Use <code class="code">.not-sr-only</code> to restore an element to visibility at a larger breakpoint or state.</div>
+
+    <p class="section-title">.focus-ring / .focus-ring-danger / .focus-ring-inset / .focus-within-ring</p>
+    <div class="demo-row mb-4 flex-wrap">
+      <button class="btn btn-primary focus-ring">focus-ring (tab here)</button>
+      <button class="btn btn-danger focus-ring-danger">focus-ring-danger</button>
+      <button class="btn btn-outline focus-ring-inset">focus-ring-inset</button>
+      <div class="p-3 border rounded focus-within-ring" tabindex="0">
+        <label class="label text-xs">focus-within-ring (click inside)</label>
+        <input class="input input-sm" type="text" placeholder="Focus me" />
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 19. INLINE DARK THEME ===================================== -->
+  <div id="dark-inline" class="container demo-section">
+    <h2 class="heading-3 mb-4">Inline Dark Theme</h2>
+    <p class="text-muted text-sm mb-6">
+      Apply <code class="code">data-theme="dark"</code> to any element to force dark mode in that scope, regardless of the page theme.
+      Combine with <code class="code">data-theme="light"</code> for nested light islands.
+    </p>
+
+    <div data-theme="dark" class="rounded-lg p-6 mb-6">
+      <p class="heading-5 mb-4">This section is always dark — <code class="code" style="font-size:0.75em;">data-theme="dark"</code></p>
+      <div class="stack-sm">
+        <div class="flex flex-wrap gap-2">
+          <button class="btn btn-primary">btn-primary</button>
+          <button class="btn btn-secondary">btn-secondary</button>
+          <button class="btn btn-outline">btn-outline</button>
+          <button class="btn btn-ghost">btn-ghost</button>
+          <button class="btn btn-danger">btn-danger</button>
+        </div>
+        <div class="grid grid-cols-1 md-grid-cols-2 gap-4">
+          <div class="form-group">
+            <label class="label">Input (dark)</label>
+            <input class="input" type="text" placeholder="Dark mode input" />
+          </div>
+          <div class="form-group">
+            <label class="label">Select (dark)</label>
+            <select class="input"><option>Option A</option><option>Option B</option></select>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <div class="alert-success text-sm">Success alert</div>
+          <div class="alert-danger text-sm">Error alert</div>
+          <div class="alert-info text-sm">Info alert</div>
+        </div>
+        <div class="cluster">
+          <span class="badge-primary">Primary</span>
+          <span class="badge-soft-success">Approved</span>
+          <span class="badge-soft-danger">Rejected</span>
+          <span class="badge-soft-warning">Pending</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="text-muted text-sm mb-4">Nested: dark wrapper → light island inside.</p>
+    <div data-theme="dark" class="rounded-lg p-4 mb-4">
+      <p class="text-sm mb-3 font-semibold">Dark outer (<code class="code" style="font-size:0.7em;">data-theme="dark"</code>)</p>
+      <div data-theme="light" class="rounded-lg p-4 border">
+        <p class="text-sm mb-2 font-semibold">Light island (<code class="code" style="font-size:0.7em;">data-theme="light"</code>)</p>
+        <div class="flex gap-2">
+          <button class="btn btn-primary btn-sm">Forced Light Button</button>
+          <input class="input input-sm" type="text" placeholder="Light input inside dark" style="max-width:200px;" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 20. RAW HTML BASELINE ===================================== -->
+  <div id="raw-html" class="container demo-section">
+    <h2 class="heading-3 mb-4">Raw HTML5 — No Classes</h2>
+    <p class="text-muted text-sm mb-6">Every element below has <strong>zero Streamertail classes</strong>. This verifies Streamertail never interferes with existing markup. All styling is strictly opt-in.</p>
+
+    <!-- Headings -->
+    <h1>h1 — Heading 1</h1>
+    <h2>h2 — Heading 2</h2>
+    <h3>h3 — Heading 3</h3>
+    <h4>h4 — Heading 4</h4>
+    <h5>h5 — Heading 5</h5>
+    <h6>h6 — Heading 6</h6>
+
+    <!-- Sectioning elements -->
+    <header><p><b>header</b> — introductory content or nav links</p></header>
+    <nav><p><b>nav</b> — <a href="#">Link A</a> | <a href="#">Link B</a> | <a href="#">Link C</a></p></nav>
+    <main><p><b>main</b> — dominant content of the document body</p></main>
+    <article><p><b>article</b> — self-contained, independently distributable content</p></article>
+    <section><p><b>section</b> — thematic grouping of content with a heading</p></section>
+    <aside><p><b>aside</b> — tangentially related content (sidebar, callout)</p></aside>
+    <footer><p><b>footer</b> — footer for its nearest sectioning element</p></footer>
+    <address><b>address</b> — contact info: <a href="mailto:hello@example.com">hello@example.com</a></address>
+
+    <!-- Text content -->
+    <p>A plain paragraph. The quick brown fox jumps over the lazy dog.</p>
+    <blockquote cite="https://example.com"><b>blockquote</b> — A plain blockquote with no classes applied.</blockquote>
+    <pre>pre — Pre-formatted text.
+    Preserves    whitespace    and
+    line breaks verbatim.</pre>
+    <hr />
+
+    <!-- Lists -->
+    <ul><li>ul/li — Unordered item 1</li><li>Unordered item 2</li><li>Unordered item 3</li></ul>
+    <ol><li>ol/li — Ordered item 1</li><li>Ordered item 2</li><li>Ordered item 3</li></ol>
+    <ol type="a"><li>ol type=a</li><li>Item two</li><li>Item three</li></ol>
+    <dl><dt><b>dl/dt/dd</b> — Term one</dt><dd>Description one</dd><dt>Term two</dt><dd>Description two</dd></dl>
+
+    <!-- Figure -->
+    <figure>
+      <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='80'%3E%3Crect fill='%236366f1' width='200' height='80'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='14'%3Efigure / img%3C/text%3E%3C/svg%3E" alt="figure example" width="200" height="80" />
+      <figcaption><b>figcaption</b> — caption for the figure above</figcaption>
+    </figure>
+
+    <!-- Table with tfoot and col -->
+    <table>
+      <caption><b>table</b> — caption, colgroup, thead, tbody, tfoot</caption>
+      <colgroup>
+        <col style="width:40%" />
+        <col style="width:35%" />
+        <col style="width:25%" />
+      </colgroup>
+      <thead><tr><th>Name</th><th>Role</th><th>Score</th></tr></thead>
+      <tbody>
+        <tr><td>Alice</td><td>Developer</td><td>92</td></tr>
+        <tr><td>Bob</td><td>Designer</td><td>88</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="2">tfoot — Total</td><td>180</td></tr></tfoot>
+    </table>
+
+    <!-- Inline text semantics -->
+    <p style="margin-top:1rem;line-height:2.2;">
+      <a href="#">a</a> |
+      <abbr title="HyperText Markup Language">abbr</abbr> |
+      <b>b</b> | <strong>strong</strong> |
+      <i>i</i> | <em>em</em> |
+      <u>u</u> | <s>s</s> |
+      <del>del</del> | <ins>ins</ins> |
+      <small>small</small> |
+      <sub>sub</sub> | <sup>sup</sup> |
+      <mark>mark</mark> |
+      <code>code</code> | <kbd>kbd</kbd> | <samp>samp</samp> |
+      <var>var</var> |
+      <cite>cite</cite> |
+      <q cite="https://example.com">q — inline quotation</q> |
+      <time datetime="2026-05-31">time (May 31, 2026)</time> |
+      <span>span</span> |
+      <bdi>bdi (bidirectional isolation)</bdi> |
+      <data value="42">data (value=42)</data> |
+      A word with a soft hyphen: super&shy;cali&shy;fragi&shy;listic (wbr / &amp;shy;)
+    </p>
+
+    <!-- Progress & Meter -->
+    <p style="margin-top:1rem;">
+      <b>progress</b> (75%):<br />
+      <progress value="75" max="100">75%</progress>
+    </p>
+    <p style="margin-top:0.5rem;">
+      <b>meter</b> — disk usage (6 GB of 10 GB):<br />
+      <meter value="6" min="0" max="10" low="3" high="8" optimum="4">6 out of 10</meter>
+    </p>
+
+    <!-- Form — all input types -->
+    <form style="margin-top:1rem;">
+      <fieldset>
+        <legend>form / fieldset / legend — all input types (no Streamertail classes)</legend>
+        <p><label>text: <input type="text" placeholder="text" /></label></p>
+        <p><label>password: <input type="password" placeholder="••••••••" /></label></p>
+        <p><label>email: <input type="email" placeholder="user@example.com" /></label></p>
+        <p><label>tel: <input type="tel" placeholder="+1 555 000 0000" /></label></p>
+        <p><label>url: <input type="url" placeholder="https://example.com" /></label></p>
+        <p><label>search: <input type="search" placeholder="Search…" /></label></p>
+        <p><label>number: <input type="number" min="0" max="100" value="42" /></label></p>
+        <p><label>range (0–100): <input type="range" min="0" max="100" value="60" /></label></p>
+        <p><label>date: <input type="date" /></label></p>
+        <p><label>time: <input type="time" /></label></p>
+        <p><label>datetime-local: <input type="datetime-local" /></label></p>
+        <p><label>month: <input type="month" /></label></p>
+        <p><label>week: <input type="week" /></label></p>
+        <p><label>color: <input type="color" value="#6366f1" /></label></p>
+        <p><label>file: <input type="file" /></label></p>
+        <p>
+          <label>datalist: <input type="text" list="frameworks-list" placeholder="Type a framework…" /></label>
+          <datalist id="frameworks-list">
+            <option value="React" /><option value="Vue" /><option value="Svelte" /><option value="Angular" />
+          </datalist>
+        </p>
+        <p>
+          <label>select + optgroup:
+            <select>
+              <optgroup label="Front-end"><option>React</option><option>Vue</option></optgroup>
+              <optgroup label="Back-end"><option>Express</option><option>Django</option></optgroup>
+            </select>
+          </label>
+        </p>
+        <p><label>textarea:<br /><textarea rows="2" cols="40" placeholder="textarea"></textarea></label></p>
+        <p>
+          <label><input type="checkbox" checked /> checkbox (checked)</label>
+          <label><input type="checkbox" /> checkbox</label>
+          <label><input type="checkbox" disabled /> checkbox (disabled)</label>
+        </p>
+        <p>
+          <label><input type="radio" name="raw-r" checked /> radio A</label>
+          <label><input type="radio" name="raw-r" /> radio B</label>
+          <label><input type="radio" name="raw-r" disabled /> radio C (disabled)</label>
+        </p>
+        <p>
+          <label>output (sum of two numbers):
+            <input type="number" id="num-a" value="10" style="width:60px;" oninput="document.getElementById('raw-output').value = +document.getElementById('num-a').value + +document.getElementById('num-b').value" />
+            +
+            <input type="number" id="num-b" value="5" style="width:60px;" oninput="document.getElementById('raw-output').value = +document.getElementById('num-a').value + +document.getElementById('num-b').value" />
+            = <output id="raw-output" name="raw-output">15</output>
+          </label>
+        </p>
+        <p>
+          <button type="button">button</button>
+          <input type="submit" value="input[submit]" />
+          <input type="reset" value="input[reset]" />
+          <input type="button" value="input[button]" />
+        </p>
+      </fieldset>
+    </form>
+
+    <!-- Interactive elements -->
+    <details style="margin-top:1rem;">
+      <summary><b>details / summary</b> — click to expand</summary>
+      <p>Hidden content revealed on interaction — no Streamertail classes.</p>
+    </details>
+
+    <p style="margin-top:1rem;">
+      <button type="button" onclick="document.getElementById('raw-dialog').showModal()">Open &lt;dialog&gt;</button>
+    </p>
+    <dialog id="raw-dialog">
+      <p><b>dialog</b> — native modal element</p>
+      <form method="dialog"><button>Close</button></form>
+    </dialog>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="container py-8 text-center">
+    <p class="text-muted text-sm">Streamertail v0.4.0 — Lightweight, framework-agnostic CSS utility library</p>
+    <p class="text-muted text-xs mt-2"><span data-streamertail="credits">All features demonstrated above</span></p>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const label = document.getElementById('theme-label');
+      if (html.classList.contains('theme-dark')) {
+        html.classList.replace('theme-dark', 'theme-light');
+        label.textContent = 'Light';
+      } else {
+        html.classList.replace('theme-light', 'theme-dark');
+        label.textContent = 'Dark';
+      }
+    }
+  </script>
+</body>
+</html>

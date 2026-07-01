@@ -1,0 +1,27 @@
+// ===================================================================
+// BORDER COLORS
+// ===================================================================
+@use 'mixins' as *;
+
+$border-colors: (
+  primary: var(--st-color-primary),
+  secondary: var(--st-color-secondary),
+  accent: var(--st-color-accent),
+  success: var(--st-color-success),
+  warning: var(--st-color-warning),
+  danger: var(--st-color-danger),
+  info: var(--st-color-info),
+  neutral: var(--st-color-neutral),
+  default: var(--st-border-color),
+  strong: var(--st-border-color-strong),
+);
+
+@each $name, $val in $border-colors {
+  @include dual('border-#{$name}') { border-color: #{$val}; }
+}
+
+// Border aliases
+@include dual('border-red') { border-color: var(--st-color-danger); }
+@include dual('border-green') { border-color: var(--st-color-success); }
+@include dual('border-blue') { border-color: var(--st-color-info); }
+@include dual('border-orange') { border-color: var(--st-color-warning); }

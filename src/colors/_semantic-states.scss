@@ -1,0 +1,255 @@
+// ===================================================================
+// SEMANTIC COLOR STATES — Alerts, Badges, Status indicators, Gradients
+// Pre-composed contextual classes that combine bg + text + border
+// ===================================================================
+@use 'mixins' as *;
+@use 'sass:map';
+
+// ---------------------------------------------------------------------------
+// ALERTS — Full-width contextual banners/messages
+// Usage: <div class="st-alert-success">Operation completed.</div>
+// ---------------------------------------------------------------------------
+$alert-variants: (
+  success: (bg: var(--st-color-success-light), text: var(--st-color-success), border: var(--st-color-success)),
+  danger: (bg: var(--st-color-danger-light), text: var(--st-color-danger), border: var(--st-color-danger)),
+  warning: (bg: var(--st-color-warning-light), text: var(--st-color-warning), border: var(--st-color-warning)),
+  info: (bg: var(--st-color-info-light), text: var(--st-color-info), border: var(--st-color-info)),
+  caution: (bg: var(--st-color-caution-light), text: var(--st-color-caution), border: var(--st-color-caution)),
+  neutral: (bg: var(--st-color-neutral-light), text: var(--st-color-neutral), border: var(--st-color-neutral)),
+);
+
+@each $name, $colors in $alert-variants {
+  @include dual('alert-#{$name}') {
+    padding: var(--st-space-3) var(--st-space-4);
+    border-radius: var(--st-border-radius);
+    border: 1px solid #{map.get($colors, border)};
+    background-color: #{map.get($colors, bg)};
+    color: #{map.get($colors, text)};
+    font-size: var(--st-font-size-sm);
+    line-height: var(--st-line-height-normal);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// BADGES — Small inline labels/tags
+// Usage: <span class="st-badge-primary">New</span>
+// ---------------------------------------------------------------------------
+$badge-variants: (
+  primary: (bg: var(--st-color-primary), text: #ffffff),
+  secondary: (bg: var(--st-color-secondary), text: #ffffff),
+  accent: (bg: var(--st-color-accent), text: #000000),
+  success: (bg: var(--st-color-success), text: #ffffff),
+  danger: (bg: var(--st-color-danger), text: #ffffff),
+  warning: (bg: var(--st-color-warning), text: #ffffff),
+  info: (bg: var(--st-color-info), text: #ffffff),
+  neutral: (bg: var(--st-color-neutral), text: #ffffff),
+);
+
+@each $name, $colors in $badge-variants {
+  @include dual('badge-#{$name}') {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125em 0.5em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--st-border-radius-full);
+    background-color: #{map.get($colors, bg)};
+    color: #{map.get($colors, text)};
+  }
+}
+
+// Soft badge variants (lighter bg, colored text)
+$badge-soft-variants: (
+  primary: (bg: color-mix(in srgb, var(--st-color-primary) 15%, transparent), text: var(--st-color-primary)),
+  secondary: (bg: color-mix(in srgb, var(--st-color-secondary) 15%, transparent), text: var(--st-color-secondary)),
+  success: (bg: var(--st-color-success-light), text: var(--st-color-success)),
+  danger: (bg: var(--st-color-danger-light), text: var(--st-color-danger)),
+  warning: (bg: var(--st-color-warning-light), text: var(--st-color-warning)),
+  info: (bg: var(--st-color-info-light), text: var(--st-color-info)),
+);
+
+@each $name, $colors in $badge-soft-variants {
+  @include dual('badge-soft-#{$name}') {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125em 0.5em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    border-radius: var(--st-border-radius-full);
+    background-color: #{map.get($colors, bg)};
+    color: #{map.get($colors, text)};
+  }
+}
+
+// ---------------------------------------------------------------------------
+// STATUS — Dot indicators (online/offline/busy/away)
+// Usage: <span class="st-status-online"></span> Username
+// ---------------------------------------------------------------------------
+%status-base {
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+@include dual('status-online') {
+  @extend %status-base;
+  background-color: var(--st-color-success);
+  box-shadow: 0 0 0 2px var(--st-color-success-light);
+}
+
+@include dual('status-offline') {
+  @extend %status-base;
+  background-color: var(--st-color-gray-400);
+}
+
+@include dual('status-busy') {
+  @extend %status-base;
+  background-color: var(--st-color-danger);
+  box-shadow: 0 0 0 2px var(--st-color-danger-light);
+}
+
+@include dual('status-away') {
+  @extend %status-base;
+  background-color: var(--st-color-caution);
+  box-shadow: 0 0 0 2px var(--st-color-caution-light);
+}
+
+@include dual('status-dnd') {
+  @extend %status-base;
+  background-color: var(--st-color-danger);
+}
+
+// ---------------------------------------------------------------------------
+// HIGHLIGHT — Inline text highlighting
+// Usage: <span class="st-highlight">important</span>
+// ---------------------------------------------------------------------------
+@include dual('highlight') {
+  background-color: var(--st-color-caution-light);
+  padding: 0.1em 0.3em;
+  border-radius: var(--st-border-radius-sm);
+}
+
+@include dual('highlight-success') {
+  background-color: var(--st-color-success-light);
+  padding: 0.1em 0.3em;
+  border-radius: var(--st-border-radius-sm);
+}
+
+@include dual('highlight-danger') {
+  background-color: var(--st-color-danger-light);
+  padding: 0.1em 0.3em;
+  border-radius: var(--st-border-radius-sm);
+}
+
+@include dual('highlight-info') {
+  background-color: var(--st-color-info-light);
+  padding: 0.1em 0.3em;
+  border-radius: var(--st-border-radius-sm);
+}
+
+// ---------------------------------------------------------------------------
+// BACKGROUND GRADIENTS — Decorative gradient backgrounds
+// Usage: <section class="st-gradient-primary">...</section>
+// ---------------------------------------------------------------------------
+@include dual('gradient-primary') {
+  background: linear-gradient(135deg, var(--st-color-primary), var(--st-color-secondary));
+  color: #ffffff;
+}
+
+@include dual('gradient-secondary') {
+  background: linear-gradient(135deg, var(--st-color-secondary), var(--st-color-accent));
+  color: #ffffff;
+}
+
+@include dual('gradient-sunset') {
+  background: linear-gradient(135deg, #f97316, #ec4899, #f43f5e);
+  color: #ffffff;
+}
+
+@include dual('gradient-ocean') {
+  background: linear-gradient(135deg, #06b6d4, #3b82f6, #6366f1);
+  color: #ffffff;
+}
+
+@include dual('gradient-forest') {
+  background: linear-gradient(135deg, #10b981, #059669, #047857);
+  color: #ffffff;
+}
+
+@include dual('gradient-midnight') {
+  background: linear-gradient(135deg, #0f172a, #1e3a5f, #1d4ed8);
+  color: #ffffff;
+}
+
+@include dual('gradient-surface') {
+  background: linear-gradient(180deg, var(--st-bg), var(--st-bg-surface));
+}
+
+// ---------------------------------------------------------------------------
+// SURFACE VARIANTS — Semantic surface styling for cards/sections
+// Usage: <div class="st-surface-raised">...</div>
+// ---------------------------------------------------------------------------
+@include dual('surface-raised') {
+  background-color: var(--st-bg-elevated);
+  border: 1px solid var(--st-border-color);
+  border-radius: var(--st-border-radius-lg);
+  box-shadow: var(--st-shadow-sm);
+}
+
+@include dual('surface-sunken') {
+  background-color: var(--st-bg-surface);
+  border: 1px solid var(--st-border-color);
+  border-radius: var(--st-border-radius-lg);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+@include dual('surface-interactive') {
+  background-color: var(--st-bg-elevated);
+  border: 1px solid var(--st-border-color);
+  border-radius: var(--st-border-radius-lg);
+  box-shadow: var(--st-shadow-sm);
+  transition: box-shadow var(--st-transition), border-color var(--st-transition);
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: var(--st-shadow-md);
+    border-color: var(--st-border-color-strong);
+  }
+}
+
+// ---------------------------------------------------------------------------
+// DIVIDER — Semantic horizontal/vertical separators
+// Usage: <hr class="st-divider" />
+// ---------------------------------------------------------------------------
+@include dual('divider') {
+  border: none;
+  border-top: 1px solid var(--st-border-color);
+  margin: var(--st-space-4) 0;
+}
+
+@include dual('divider-strong') {
+  border: none;
+  border-top: 2px solid var(--st-border-color-strong);
+  margin: var(--st-space-6) 0;
+}
+
+@include dual('divider-dashed') {
+  border: none;
+  border-top: 1px dashed var(--st-border-color);
+  margin: var(--st-space-4) 0;
+}
+
+@include dual('divider-vertical') {
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  background-color: var(--st-border-color);
+  margin: 0 var(--st-space-2);
+  vertical-align: middle;
+}

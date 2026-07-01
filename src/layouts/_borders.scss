@@ -1,0 +1,50 @@
+// ===================================================================
+// BORDER — Width, style, sides, and radius utilities
+// ===================================================================
+@use 'mixins' as *;
+
+// --- Border width (all sides) ---
+@include dual('border') { border: 1px solid var(--st-border-color); }
+@include dual('border-0') { border: 0; }
+@include dual('border-2') { border: 2px solid var(--st-border-color); }
+@include dual('border-4') { border: 4px solid var(--st-border-color); }
+@include dual('border-8') { border: 8px solid var(--st-border-color); }
+
+// --- Border sides ---
+@include dual('border-t') { border-top: 1px solid var(--st-border-color); }
+@include dual('border-r') { border-right: 1px solid var(--st-border-color); }
+@include dual('border-b') { border-bottom: 1px solid var(--st-border-color); }
+@include dual('border-l') { border-left: 1px solid var(--st-border-color); }
+@include dual('border-x') { border-left: 1px solid var(--st-border-color); border-right: 1px solid var(--st-border-color); }
+@include dual('border-y') { border-top: 1px solid var(--st-border-color); border-bottom: 1px solid var(--st-border-color); }
+
+// --- Border none (per-side) ---
+@include dual('border-t-0') { border-top: 0; }
+@include dual('border-r-0') { border-right: 0; }
+@include dual('border-b-0') { border-bottom: 0; }
+@include dual('border-l-0') { border-left: 0; }
+
+// --- Border style ---
+@include dual('border-solid') { border-style: solid; }
+@include dual('border-dashed') { border-style: dashed; }
+@include dual('border-dotted') { border-style: dotted; }
+@include dual('border-none') { border-style: none; }
+
+// --- Border radius ---
+@include dual('rounded-none') { border-radius: 0; }
+@include dual('rounded-sm') { border-radius: var(--st-border-radius-sm); }
+@include dual('rounded') { border-radius: var(--st-border-radius); }
+@include dual('rounded-md') { border-radius: var(--st-border-radius-md); }
+@include dual('rounded-lg') { border-radius: var(--st-border-radius-lg); }
+@include dual('rounded-xl') { border-radius: var(--st-border-radius-xl); }
+@include dual('rounded-full') { border-radius: var(--st-border-radius-full); }
+
+// --- Per-side radius ---
+@include dual('rounded-t') { border-top-left-radius: var(--st-border-radius); border-top-right-radius: var(--st-border-radius); }
+@include dual('rounded-b') { border-bottom-left-radius: var(--st-border-radius); border-bottom-right-radius: var(--st-border-radius); }
+@include dual('rounded-l') { border-top-left-radius: var(--st-border-radius); border-bottom-left-radius: var(--st-border-radius); }
+@include dual('rounded-r') { border-top-right-radius: var(--st-border-radius); border-bottom-right-radius: var(--st-border-radius); }
+@include dual('rounded-tl') { border-top-left-radius: var(--st-border-radius); }
+@include dual('rounded-tr') { border-top-right-radius: var(--st-border-radius); }
+@include dual('rounded-bl') { border-bottom-left-radius: var(--st-border-radius); }
+@include dual('rounded-br') { border-bottom-right-radius: var(--st-border-radius); }

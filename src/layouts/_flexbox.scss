@@ -1,0 +1,66 @@
+// ===================================================================
+// FLEXBOX — Flex utility classes
+// ===================================================================
+@use 'mixins' as *;
+
+@include dual('flex') { display: flex; }
+@include dual('inline-flex') { display: inline-flex; }
+
+// Direction
+@include dual('flex-row') { flex-direction: row; }
+@include dual('flex-col') { flex-direction: column; }
+@include dual('flex-row-reverse') { flex-direction: row-reverse; }
+@include dual('flex-col-reverse') { flex-direction: column-reverse; }
+
+// Wrap
+@include dual('flex-wrap') { flex-wrap: wrap; }
+@include dual('flex-nowrap') { flex-wrap: nowrap; }
+
+// Justify content
+$justify-values: (start: flex-start, end: flex-end, center: center, between: space-between, around: space-around, evenly: space-evenly);
+
+@each $name, $val in $justify-values {
+  @include dual('justify-#{$name}') { justify-content: #{$val}; }
+}
+
+// Align items
+$align-values: (start: flex-start, end: flex-end, center: center, baseline: baseline, stretch: stretch);
+
+@each $name, $val in $align-values {
+  @include dual('items-#{$name}') { align-items: #{$val}; }
+}
+
+// Align self
+@each $name, $val in $align-values {
+  @include dual('self-#{$name}') { align-self: #{$val}; }
+}
+
+// Flex grow/shrink
+@include dual('flex-1') { flex: 1 1 0%; }
+@include dual('flex-auto') { flex: 1 1 auto; }
+@include dual('flex-initial') { flex: 0 1 auto; }
+@include dual('flex-none') { flex: none; }
+@include dual('grow') { flex-grow: 1; }
+@include dual('grow-0') { flex-grow: 0; }
+@include dual('shrink') { flex-shrink: 1; }
+@include dual('shrink-0') { flex-shrink: 0; }
+
+// Order
+@for $i from 1 through 6 {
+  @include dual('order-#{$i}') { order: #{$i}; }
+}
+@include dual('order-first') { order: -9999; }
+@include dual('order-last') { order: 9999; }
+
+// Responsive flex utilities
+@each $bp, $width in $breakpoints {
+  @include breakpoint($width) {
+    .st-#{$bp}-flex, .#{$bp}-flex { display: flex; }
+    .st-#{$bp}-flex-col, .#{$bp}-flex-col { flex-direction: column; }
+    .st-#{$bp}-flex-row, .#{$bp}-flex-row { flex-direction: row; }
+    .st-#{$bp}-flex-wrap, .#{$bp}-flex-wrap { flex-wrap: wrap; }
+    .st-#{$bp}-justify-center, .#{$bp}-justify-center { justify-content: center; }
+    .st-#{$bp}-justify-between, .#{$bp}-justify-between { justify-content: space-between; }
+    .st-#{$bp}-items-center, .#{$bp}-items-center { align-items: center; }
+  }
+}
